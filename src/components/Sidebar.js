@@ -14,11 +14,12 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import LoginIcon from '@mui/icons-material/Login';
-import { useState } from 'react';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../providers/UserProvider';
 
 
 const drawerWidth = 240;
@@ -92,6 +93,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function Sidebar({ children }) {
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
+	const { user } = useContext(UserContext)
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -130,24 +132,34 @@ export default function Sidebar({ children }) {
 				</DrawerHeader>
 				<Divider />
 				<List>
-					<Link to="login">
-						<ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
-							<ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
-								<LoginIcon />
-							</ListItemIcon>
-							<ListItemText sx={{ opacity: open ? 1 : 0 }}>
-								Login
-							</ListItemText>
-						</ListItemButton>
-					</Link>
-					<ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
-						<ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
-							<InboxIcon />
-						</ListItemIcon>
-						<ListItemText sx={{ opacity: open ? 1 : 0 }}>
-							TEST
-						</ListItemText>
-					</ListItemButton>
+					{user.jwt ?
+						(
+							<Link to="/">
+								<ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
+									<ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
+										<DashboardIcon />
+									</ListItemIcon>
+									<ListItemText sx={{ opacity: open ? 1 : 0 }}>
+										Dashboard
+									</ListItemText>
+								</ListItemButton>
+							</Link>
+						)
+						:
+						(
+
+							<Link to="login">
+								<ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
+									<ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
+										<LoginIcon />
+									</ListItemIcon>
+									<ListItemText sx={{ opacity: open ? 1 : 0 }}>
+										Login
+									</ListItemText>
+								</ListItemButton>
+							</Link>
+						)
+					}
 				</List>
 				<Divider />
 				<List>
