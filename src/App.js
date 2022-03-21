@@ -1,12 +1,14 @@
 import './App.css';
-import Example from './components/Example';
+import Dashboard from './components/Dashboard';
+import Sidebar from './components/Sidebar';
+
 
 function App() {
 	return (
 		<div className="App">
-			Hello Worlds
-
-			<Example />
+			<Sidebar>
+				<Dashboard />
+			</Sidebar>
 		</div>
 	);
 }
