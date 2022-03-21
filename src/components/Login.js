@@ -20,9 +20,16 @@ export default function Login() {
 	const onLogin = async (e) => {
 		e.preventDefault()
 		setDisableLogin(true)
+		const email = e.target.email.value;
+		const password = e.target.password.value;
+
 		try {
 			const res = await fetch('http://localhost:8080/api/v1/auth/login', {
-				method: "POST"
+				method: "POST",
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify({ email, password })
 			})
 			const result = await res.json()
 
@@ -39,6 +46,7 @@ export default function Login() {
 					variant: "error",
 					autoHideDuration: 2500,
 				});
+				setDisableLogin(false)
 			}
 
 		} catch (e) {
