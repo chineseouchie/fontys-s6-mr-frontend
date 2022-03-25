@@ -1,13 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useParams} from "react-router-dom";
+import {useFetch} from "../../hooks/useFetch";
 
 export default function VehicleDetail(props) {
+    const params = useParams();
+    const { data, error, loading } = useFetch(`http://localhost:8080/vehicle/${params.id}`);
+
+    if (loading) {
+        return (
+            <div>
+                ...loading
+            </div>
+        )
+    }
+    if (error) {
+        return (
+            <div>
+                ...something went wrong
+            </div>
+        )
+    }
+
     return (
-        <div>
-            <img src={"https://freepikpsd.com/file/2019/10/car-drawing-png-8-1.png"}/>
-            {props.vehicle.vehicle_model}
-            {props.vehicle.brand_name}
-            {props.vehicle.colors}
-            {props.vehicle.vehicle_price}
-        </div>
-    );
+        <>
+            <div className={"vehicle"}>
+                <div style={{ height: 400, width: '100%' }}>
+                    {data.brand_name} {data.vehicle_model}
+                    <div>
+                        {data.colors.map(function(color, idx){
+                            return (<li key={idx}>{color}</li>)
+                        })}
+                    </div>
+                </div>}
+            </div>
+        </>
+    )
 }

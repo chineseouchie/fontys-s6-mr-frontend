@@ -1,29 +1,20 @@
-import * as React from 'react';
+import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
 import './App.css';
-import Example from './components/Example';
-import Vehicles from './components/Vehicle/Vehicles';
+import Vehicles from "./components/Vehicle/Vehicles";
+import VehicleDetail from "./components/Vehicle/VehicleDetail";
+
 
 function App() {
 	return (
 		<div className="App">
-			<Vehicles/>
-			{/*<Router>*/}
-			{/*	<Sidebar>*/}
-			{/*		<Routes>*/}
-			{/*			<Route path="/" element={auth ? <Dashboard /> : <Login />} />*/}
-			{/*			<Route path="/login" element={<Login />} />*/}
-			{/*		</Routes>*/}
-			{/*		<div>*/}
-			{/*			TEMP:*/}
-			{/*			<button onClick={() => login("test")}>setCookie</button>*/}
-			{/*			<button onClick={() => logout()}>removeCookie</button>*/}
-			{/*		</div>*/}
-			{/*	</Sidebar>*/}
-			{/*</Router>*/}
+			<Router>
+					<Routes>
+						<Route path="/" element={<Vehicles />} />
+						<Route path="/detail/:id" element={<VehicleDetail />} />
+					</Routes>
+			</Router>
 		</div>
-
 	);
 }
 
 export default App;
-
