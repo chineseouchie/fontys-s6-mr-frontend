@@ -7,11 +7,11 @@ function route(id) {
 }
 
 export default function VehicleCard(props) {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <div>
-            <Card onClick={() => navigate("/", props)}>
+            <Card /*onClick={() => navigate("/", props)}*/>
                 <CardMedia
                     component="img"
                     height={"100"}
