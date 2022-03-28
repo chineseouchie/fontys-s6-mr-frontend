@@ -1,3 +1,4 @@
+
 a {
 	text-decoration: none;
 	color: inherit;
@@ -18,4 +19,8 @@ a {
 
 .login-form > .MuiFormControl-root {
 	width: 500px;
+}
+
+.vehicle {
+    width: 200px;
 }

@@ -15,7 +15,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import CarRentalIcon from '@mui/icons-material/CarRental';
 import { useContext, useState } from 'react';
-import { UserContext } from '../providers/UserProvider';
+import { UserContext } from '../../providers/UserProvider';
 import MenuItem from './MenuItem';
 
 

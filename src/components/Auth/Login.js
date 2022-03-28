@@ -1,7 +1,7 @@
 import { useSnackbar } from "notistack"
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../providers/UserProvider"
+import { UserContext } from "../../providers/UserProvider"
 import { Button, FormControl, FormGroup, TextField } from "@mui/material";
 
 export default function Login() {
