@@ -13,7 +13,6 @@ function App() {
 	const { user, login, logout } = useContext(UserContext)
 	const [auth, setAuth] = useState(false)
 
-
 	useEffect(() => {
 		if (user.jwt) {
 			setAuth(true)
