@@ -11,11 +11,11 @@ export default function Login() {
 	const [disableLogin, setDisableLogin] = useState(false)
 
 	useEffect(() => {
-		if (user.jwt) {
+		if (user?.jwt) {
 			navigate("/")
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user.jwt])
+	}, [user?.jwt])
 
 	const onLogin = async (e) => {
 		e.preventDefault()
