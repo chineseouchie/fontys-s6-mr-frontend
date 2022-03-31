@@ -13,7 +13,7 @@ export default function VehicleCard({ vehicle }) {
 					<CardMedia
 						component="img"
 						height="200"
-						image={"https://freepikpsd.com/file/2019/10/car-drawing-png-8-1.png"}
+						image={vehicle.image_url}
 					/>
 					<CardContent>
 						<Typography variant="h5" component="div">
