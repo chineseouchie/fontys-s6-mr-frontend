@@ -7,6 +7,7 @@ a {
 
 .App {
 	height: 100vh;
+	font-family: Roboto, Helvetica, Segoe;
 }
 
 .login-form {
@@ -19,8 +20,4 @@ a {
 
 .login-form > .MuiFormControl-root {
 	width: 500px;
-}
-
-.vehicle {
-    width: 200px;
 }

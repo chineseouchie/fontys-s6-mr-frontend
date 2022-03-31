@@ -1,34 +1,34 @@
+import "./vehicle.css"
+
 import React from 'react';
-import {Button, Card, CardContent, CardMedia} from "@mui/material";
-import VehicleDetail from "./VehicleDetail";
-import {Route, useNavigate} from "react-router-dom";
+import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-// const test = (vehicleData) => {
-//     const navigate = useNavigate();
-//     return console.log(vehicleData);
-// }
+export default function VehicleCard({ vehicle }) {
+	const navigate = useNavigate();
 
-export default function VehicleCard(props) {
-    const navigate = useNavigate();
+	return (
+		<Grid item xs={2} sm={4} md={4}>
+			<Card onClick={() => { navigate(`/vehicles/detail/${vehicle.vehicle_id}`) }}>
+				<CardActionArea>
+					<CardMedia
+						component="img"
+						height="200"
+						image={"https://freepikpsd.com/file/2019/10/car-drawing-png-8-1.png"}
+					/>
+					<CardContent>
+						<Typography variant="h5" component="div">
+							{vehicle.brand_name} - {vehicle.vehicle_model}
+						</Typography>
+						<Typography variant="body2" color="text.secondary">
+							LEASEPRIJS VANAF €{vehicle.vehicle_price} P/M
+						</Typography>
 
-    return (
-        <div>
-            <Card onClick={() => {navigate(`/detail/${props.vehicle.vehicle_id}`)}}>
-                <CardMedia
-                    component="img"
-                    height={"100"}
-                    image={"https://freepikpsd.com/file/2019/10/car-drawing-png-8-1.png"}
-                />
-                <CardContent>
-                    Title
-                    <br/>
-                    {props.vehicle.vehicle_id}
-                    <br/>
-                    {props.vehicle.brand_name}
 
-                </CardContent>
-            </Card>
-        </div>
-    );
+					</CardContent>
+				</CardActionArea>
+			</Card>
+		</Grid>
+	);
 }
 

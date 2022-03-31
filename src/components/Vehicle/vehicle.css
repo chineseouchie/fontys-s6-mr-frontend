@@ -1,0 +1,14 @@
+.vehicle_grid {
+    border: black 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 3px 0px 0px 3px;
+}
+
+.vehicle_card {
+    padding: 10px !important;
+}
+
+.vehicle_container {
+    padding: 0px 30px 30px 30px;
+}

@@ -27,7 +27,7 @@ export default function Login() {
 			const res = await fetch('http://localhost:8080/api/v1/auth/login', {
 				method: "POST",
 				headers: {
-					'content-type': 'application/json'
+					"content-type": "application/json"
 				},
 				body: JSON.stringify({ email, password })
 			})
