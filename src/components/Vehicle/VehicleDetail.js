@@ -3,7 +3,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 export default function VehicleDetail() {
 	const params = useParams();
-	const { data, error, loading } = useFetch(`http://localhost:8081/vehicle/${params.id}`);
+	const { data, error, loading } = useFetch(`http://localhost:8081/api/v1/vehicle/${params.id}`);
 
 	if (loading) {
 		return (
@@ -24,7 +24,7 @@ export default function VehicleDetail() {
 		<>
 			<div className={"vehicle"}>
 				<div style={{ height: 400, width: "100%" }}>
-					{data.brand_name} {data.vehicle_model}
+					{data.brand.name} {data.model}
 					<div>
 						{data.colors.map((color, idx) => {
 							return (<li key={idx}>{color}</li>)

@@ -5,7 +5,7 @@ import { useFetch } from "../../hooks/useFetch";
 import {Card, Grid} from "@mui/material";
 
 export default function Vehicles() {
-	const { data, error, loading } = useFetch("http://localhost:8081/vehicle");
+	const { data, error, loading } = useFetch("http://localhost:8081/api/v1/vehicle");
 
 	if (loading) {
 		return (

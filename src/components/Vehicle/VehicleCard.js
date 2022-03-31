@@ -17,10 +17,10 @@ export default function VehicleCard({ vehicle }) {
 					/>
 					<CardContent>
 						<Typography variant="h5" component="div">
-							{vehicle.brand_name} - {vehicle.vehicle_model}
+							{vehicle.brand.name} - {vehicle.model}
 						</Typography>
 						<Typography variant="body2" color="text.secondary">
-							LEASEPRIJS VANAF €{vehicle.vehicle_price} P/M
+							LEASEPRIJS VANAF €{vehicle.price} P/M
 						</Typography>
 
 
