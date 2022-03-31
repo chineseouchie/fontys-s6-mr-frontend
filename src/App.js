@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
-import './App.css';
-import Dashboard from './components/Dashboard';
+import "./App.css";
+import Dashboard from "./components/Dashboard";
 import Login from "./components/Auth/Login";
-import Sidebar from './components/Menu/Sidebar';
+import Sidebar from "./components/Menu/Sidebar";
 import Vehicles from "./components/Vehicle/Vehicles";
 import VehicleDetail from "./components/Vehicle/VehicleDetail";
 import { UserContext } from "./providers/UserProvider";

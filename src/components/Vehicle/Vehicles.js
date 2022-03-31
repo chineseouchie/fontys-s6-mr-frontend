@@ -1,9 +1,8 @@
 import "./vehicle.css"
 
-import * as React from 'react';
 import VehicleCard from "./VehicleCard";
 import { useFetch } from "../../hooks/useFetch";
-import {Card, Container, Grid} from '@mui/material';
+import {Card, Grid} from "@mui/material";
 
 export default function Vehicles() {
 	const { data, error, loading } = useFetch("http://localhost:8081/vehicle");

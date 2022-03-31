@@ -1,8 +1,7 @@
-import React from 'react';
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 
-export default function VehicleDetail(props) {
+export default function VehicleDetail() {
 	const params = useParams();
 	const { data, error, loading } = useFetch(`http://localhost:8081/vehicle/${params.id}`);
 
@@ -24,7 +23,7 @@ export default function VehicleDetail(props) {
 	return (
 		<>
 			<div className={"vehicle"}>
-				<div style={{ height: 400, width: '100%' }}>
+				<div style={{ height: 400, width: "100%" }}>
 					{data.brand_name} {data.vehicle_model}
 					<div>
 						{data.colors.map((color, idx) => {
