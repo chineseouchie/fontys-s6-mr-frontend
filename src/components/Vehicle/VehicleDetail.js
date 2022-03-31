@@ -4,7 +4,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 export default function VehicleDetail(props) {
 	const params = useParams();
-	const { data, error, loading } = useFetch(`http://localhost:8080/vehicle/${params.id}`);
+	const { data, error, loading } = useFetch(`http://localhost:8081/vehicle/${params.id}`);
 
 	if (loading) {
 		return (

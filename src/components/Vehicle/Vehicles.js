@@ -1,10 +1,12 @@
+import "./vehicle.css"
+
 import * as React from 'react';
 import VehicleCard from "./VehicleCard";
 import { useFetch } from "../../hooks/useFetch";
-import { Grid } from '@mui/material';
+import {Card, Container, Grid} from '@mui/material';
 
 export default function Vehicles() {
-	const { data, error, loading } = useFetch("http://localhost:8080/vehicle");
+	const { data, error, loading } = useFetch("http://localhost:8081/vehicle");
 
 	if (loading) {
 		return (
@@ -23,13 +25,14 @@ export default function Vehicles() {
 	console.log(data)
 	return (
 		<div className={"vehicle"}>
-			<div >
+			<Card className={"vehicle_container"}>
+				<h1>Ons aanbod</h1>
 				<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 					{data.map((item, idx) => (
 						<VehicleCard vehicle={item} key={idx} />
 					))}
 				</Grid>
-			</div>
+			</Card>
 		</div>
 	)
 }

@@ -1,3 +1,5 @@
+import "./vehicle.css"
+
 import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
