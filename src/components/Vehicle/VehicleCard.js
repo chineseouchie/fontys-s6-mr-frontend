@@ -8,7 +8,7 @@ export default function VehicleCard({ vehicle }) {
 
 	return (
 		<Grid item xs={2} sm={4} md={4}>
-			<Card onClick={() => { navigate(`/vehicles/detail/${vehicle.vehicle_id}`) }}>
+			<Card onClick={() => { navigate(`/vehicles/detail/${vehicle.uuid}`) }}>
 				<CardActionArea>
 					<CardMedia
 						component="img"
