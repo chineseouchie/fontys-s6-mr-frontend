@@ -1,0 +1,70 @@
+image: node:16.14.0
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+  - build 
+  - deploy
+
+before_script:
+  - echo -n ${CI_REGISTRY_TOKEN}
+  - docker login -u "${CI_REGISTRY_USER}" -p ${CI_REGISTRY_TOKEN} ${CI_REGISTRY}
+  - 'docker stop $(docker ps --filter ancestor=mobilityrentals6/s6-mr-frontend -aq) || echo true'
+  - 'docker container rm $(docker ps --filter ancestor=mobilityrentals6/s6-mr-frontend -aq) || echo true'
+  - 'docker image prune -f'
+  # - 'docker stop mobilityrentals6React'
+  #- docker rmi $(docker images --filter=reference="*:latest*" -q)
+  # - sudo -S apt-get update -qq
+  # - sudo -S apt-get install -qq git
+  # - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+  # - eval $(ssh-agent -s)
+  # - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  # - mkdir -p ~/.ssh
+  # - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+
+test:
+  stage: test
+  script:
+    - echo "Start building App"
+    - docker build --target test --tag test .
+    - docker rmi test
+
+    
+build:
+  stage: build
+  script: 
+    - 'echo ${CI_REGISTRY_IMAGE}:$CI_COMMIT_SHA'
+    # - 'docker pull $CI_REGISTRY_IMAGE:latest'
+    - 'docker build --tag "${CI_REGISTRY_IMAGE}:latest" --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} .'
+    - 'docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
+    - 'docker push ${CI_REGISTRY_IMAGE}:latest'
+    - 'docker rmi ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
+
+  only:
+    - master
+
+deploy:
+  stage: deploy
+  script:
+    - 'docker pull ${CI_REGISTRY_IMAGE}:latest'
+    - 'docker run -d -p 80:80 ${CI_REGISTRY_IMAGE}:latest'
+
+  only:
+    - master
+        # - 'docker tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} ${CI_REGISTRY_IMAGE}:latest'
+    # - 'docker push ${CI_REGISTRY_IMAGE}:latest'
+    # - 'docker rmi ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
+#    - 'docker stop '
+#    - 'docker rmi $(docker images mobilityrentals6/mobilityrentals6:latest -a -q)'
+
+
+  #   - bash deploy/deploy.sh
+  # environment:
+  #   name: production
+  #   url: 192.168.44.121
+  # only:
+  #   - main
