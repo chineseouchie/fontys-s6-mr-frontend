@@ -11,6 +11,7 @@ export default function VehicleCard({ vehicle }) {
 			<Card onClick={() => { navigate(`/vehicles/detail/${vehicle.uuid}`) }}>
 				<CardActionArea>
 					<CardMedia
+						className={"vehicle-image"}
 						component="img"
 						height="200"
 						image={vehicle.image_url}
