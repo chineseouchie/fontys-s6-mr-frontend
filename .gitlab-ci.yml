@@ -23,7 +23,8 @@ test:
     - docker build --target test --tag test .
     - docker rmi test
   only: 
-  - master
+    - master
+    - production
 
     
 build:
