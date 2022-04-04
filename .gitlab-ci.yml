@@ -45,13 +45,16 @@ build:
     - 'docker rmi ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
 
   only:
-    - main
+    - master
 
 deploy:
   stage: deploy
   script:
     - 'docker pull ${CI_REGISTRY_IMAGE}:latest'
     - 'docker run -d -p 80:80 ${CI_REGISTRY_IMAGE}:latest'
+
+  only:
+    - master
         # - 'docker tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} ${CI_REGISTRY_IMAGE}:latest'
     # - 'docker push ${CI_REGISTRY_IMAGE}:latest'
     # - 'docker rmi ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
