@@ -32,7 +32,7 @@ function App() {
 						<Route path="/vehicles/detail/:id" element={<VehicleDetail />} />
 					</Routes>
 					<div>
-						TEMP:
+						TEMP(to be removed):
 						<button onClick={() => login("test")}>setCookie</button>
 						<button onClick={() => logout()}>removeCookie</button>
 					</div>
