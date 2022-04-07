@@ -7,6 +7,7 @@ import Sidebar from "./components/Menu/Sidebar";
 import Vehicles from "./components/Vehicle/Vehicles";
 import VehicleDetail from "./components/Vehicle/VehicleDetail";
 import { UserContext } from "./providers/UserProvider";
+import OfferSuccess from "./components/Offer/OfferSuccess";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/vehicles" element={<Vehicles />} />
 						<Route path="/vehicles/detail/:id" element={<VehicleDetail />} />
+						<Route path="/invoice/success" element={<OfferSuccess />} />
 					</Routes>
 					<div>
 						TEMPORARY:
