@@ -8,7 +8,7 @@ export default function OfferSuccess() {
 	return (
 		<Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }} pr={20} pl={20}>
 			<Typography variant="h3">Invoice requested</Typography>
-			<Typography>Invoice successfully requested, our dealers are now looking at your request. You will receive an email if one of them responds with a good offer.</Typography>
+			<Typography>Invoice successfully requested, our dealers are now looking at your request. You will receive an email if one of them responds with a good offer. (temp test)</Typography>
 
 			<Box
 				component="img"
