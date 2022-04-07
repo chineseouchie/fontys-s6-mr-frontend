@@ -53,7 +53,7 @@ export default function VehicleDetail() {
 			})
 			if (res.status === 200) {
 				const result = await res.json()
-				navigate("/invoice/success", { state: { offer: result } })
+				navigate("/invoice/success", { state: { offer: result, vehicle: data } })
 
 			} else {
 				console.log("error");
