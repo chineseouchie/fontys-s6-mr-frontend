@@ -1,11 +1,22 @@
-import { Button, FormGroup, Grid, TextField } from "@mui/material";
+import { Button, FormGroup, Grid, Stack, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { useState } from "react";
+import { DesktopDatePicker } from "@mui/lab";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { getDateToday } from "../../utils/date";
 
 export default function VehicleDetail() {
 	const params = useParams();
 	const { data, error, loading } = useFetch(`http://localhost:8081/api/v1/vehicle/${params.id}`);
+	const today = getDateToday()
+	const [date, setDate] = useState(new Date(`${today.yyyy}-${today.mm}-${today.dd}`));
 
+	const handleChange = (date) => {
+		setDate(date);
+	};
 	if (loading) {
 		return (
 			<div>
@@ -25,11 +36,11 @@ export default function VehicleDetail() {
 
 	return (
 		<>
-			<Grid container spacing={2}>
+			<form>
+				<Grid container spacing={2}>
 
-				<Grid item xs={7}>
-					Form hier
-					<form>
+					<Grid item xs={7} pr={3}>
+						Form hier
 						<FormGroup>
 							<div style={{ display: "flex" }}>
 								<TextField label="First name" type="text" name="first_name" variant="standard" required sx={{ flex: 1 }} />
@@ -47,18 +58,51 @@ export default function VehicleDetail() {
 							<TextField label="City" type="text" name="city" variant="standard" required />
 							<TextField label="Country" type="text" name="country" variant="standard" required />
 						</FormGroup>
-						<FormGroup>
-							<Button>Order</Button>
 
+						<FormGroup sx={{ mt: 3 }}>
+							<LocalizationProvider dateAdapter={AdapterDateFns}>
+								<Stack spacing={3}>
+									<DesktopDatePicker
+										label="Delivery date"
+										inputFormat="MM/dd/yyyy"
+										value={date}
+										onChange={handleChange}
+										renderInput={(params) => <TextField {...params} />}
+									/>
+								</Stack>
+							</LocalizationProvider>
 						</FormGroup>
 
+					</Grid>
+					<Grid item xs={5}>
+						<Typography mt={2} variant="h5">Preview</Typography>
+						<div>
+							<Box
+								component="img"
+								sx={{
+									maxWidth: { xs: 200, md: 300 },
+								}}
+								alt="The house from the offer."
+								src={data.image_url}
+							/>
+							<Box>
+								<Typography mt={3} variant="h5">Details</Typography>
+								<Typography>Car: {data.brand.name} {data.model}</Typography>
 
-					</form>
+							</Box>
+							<Box>
+								<Typography class="price">€ {data.price}</Typography>
+							</Box>
+
+							<FormGroup>
+								<Button variant="contained">Request invoice</Button>
+							</FormGroup>
+						</div>
+					</Grid>
 				</Grid>
-				<Grid item xs={5}>
-					Auto hier
-				</Grid>
-			</Grid>
+			</form>
+
 		</>
 	)
 }
+
