@@ -83,7 +83,7 @@ export default function Login() {
                         Login
                     </Button>
                     <Button variant="contained" onClick={test123}>
-                        Test
+                        Login
                     </Button>
                 </FormControl>
 
