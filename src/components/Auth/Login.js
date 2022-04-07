@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserProvider"
 import { Button, FormControl, FormGroup, TextField } from "@mui/material";
 
+
+
 export default function Login() {
 	const { user, login } = useContext(UserContext)
 	const navigate = useNavigate()
@@ -58,6 +60,15 @@ export default function Login() {
 		}
 
 	}
+	function test123() {
+		fetch(
+			"http://192.168.44.216:30007/api/v1/auth")
+			.then((res) => res.json())
+			.then((json) => {
+				console.log(json);
+			})
+	}
+
 
 	return (
 		<>
@@ -69,6 +80,9 @@ export default function Login() {
 					</FormGroup>
 
 					<Button variant="contained" type="submit" disabled={disableLogin}>
+						Login
+					</Button>
+					<Button variant="contained" onClick={test123}>
 						Login
 					</Button>
 				</FormControl>
