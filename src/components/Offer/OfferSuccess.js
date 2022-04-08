@@ -20,7 +20,7 @@ export default function OfferSuccess() {
 			/>
 
 			<Box mt={5}>
-				<Typography>{vehicle.brand.name} {vehicle.model}</Typography>
+				<Typography>{vehicle.brand} {vehicle.model}</Typography>
 				<Typography >Invoice ID: {offer.uuid}</Typography>
 			</Box>
 		</Box>

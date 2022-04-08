@@ -31,8 +31,8 @@ export default function VehicleDetail() {
 			zip_code,
 			province,
 			city,
-			country } = e.target
-
+			country,
+			color } = e.target
 		try {
 			const res = await fetch("http://localhost:8086/api/v1/offer/request", {
 				method: "POST",
@@ -48,7 +48,8 @@ export default function VehicleDetail() {
 					province: province.value,
 					city: city.value,
 					country: country.value,
-					vehicle_uuid: "UUID-vehicle-1"
+					vehicle_uuid: data.uuid,
+					color: color.value
 				})
 			})
 			if (res.status === 200) {
@@ -133,13 +134,17 @@ export default function VehicleDetail() {
 							/>
 							<Box>
 								<Typography mt={3} variant="h5">Details</Typography>
-								<Typography>Car: {data.brand.name} {data.model}</Typography>
+								<Typography>Car: {data.brand} {data.model}</Typography>
 
 							</Box>
 							<Box>
 								<Typography className="price">€ {data.price}</Typography>
 							</Box>
-
+							<select name="color">
+								{data.colors.map((c, i) => (
+									<option key={i} value={c}>{c}</option>
+								))}
+							</select>
 							<FormGroup>
 								<Button variant="contained" type="submit">Request invoice</Button>
 							</FormGroup>

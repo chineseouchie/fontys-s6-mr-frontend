@@ -20,6 +20,7 @@ function App() {
 		} else {
 			setAuth(false)
 		}
+
 	}, [user.jwt])
 
 	return (
