@@ -1,4 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 
@@ -6,7 +7,7 @@ export default function OfferDetail() {
 	const params = useParams();
 	//const { data, error, loading } = useFetch(`http://localhost:8081/api/v1/vehicle/${params.id}`);
 
-	let selectedCompanyIds;
+	const [selectedIds, setSelectedIds] = useState([]);
 
 	//Mock data
 	const dealers = [
@@ -21,10 +22,12 @@ export default function OfferDetail() {
 	];
 
 	const columns = [
-		{ field: "name", headerName: "company name" }
+		{ field: "name", headerName: "company name", flex: 1 }
 	];
 
 	const submitSelection = function () {
+		console.log(selectedIds);
+		/*
 		const requestOptions = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -37,27 +40,26 @@ export default function OfferDetail() {
 		fetch("https://reqres.in/api/posts", requestOptions)
 			.then(response => response.json())
 			.then(data => this.setState({ postId: data.id }));
+		*/
 	}
 
 	return (
 		<div className="offer">
-			<div className={"Offer-details"} style={{ height: 400, width: "100%" }}>
+			<div className={"Offer-details"}>
 				<DataGrid
 					rows={dealers}
 					columns={columns}
 					autoHeight
 					getRowId={(dealers) => dealers.uuid}
 					checkboxSelection
+
 					onSelectionModelChange={(ids) => {
-						selectedCompanyIds = new Set(ids);
-						console.log(selectedCompanyIds)
+						setSelectedIds(ids)
 					}}
 				/>
 			</div>
 
-			<button onClick={submitSelection}>
-
-			</button>
+			<button onClick={submitSelection}>Submit!</button>
 		</div>
 	);
 }

@@ -1,17 +1,17 @@
 import * as React from "react";
-import { DataGrid, DataGridProps, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { ClassNames } from "@emotion/react";
+import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 
 const columns = [
 	{
 		field: "customer-name", headerName: "Customer name",
-		valueGetter: (params) => `${params.row.firstName || ""} ${params.row.lastName || ""}`
+		valueGetter: (params) => `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+		flex: 2
 	},
-	{ field: "vehicleBrand", headerName: "Vehicle brand" },
-	{ field: "vehicleModel", headerName: "Vehicle model" },
-	{ field: "vehicleColor", headerName: "Vehicle color" },
-	{ field: "vehiclePrice", headerName: "Vehicle price" },
+	{ field: "vehicleBrand", headerName: "Vehicle brand", flex: 2 },
+	{ field: "vehicleModel", headerName: "Vehicle model", flex: 2 },
+	{ field: "vehicleColor", headerName: "Vehicle color", flex: 1 },
+	{ field: "vehiclePrice", headerName: "Vehicle price", flex: 2 },
 ];
 
 //Mock data
@@ -37,7 +37,7 @@ export default function OfferList() {
 	};
 
 	return (
-		<div className={"Offers"} style={{ height: 400, width: "100%" }}>
+		<div className={"Offers"}>
 			<DataGrid
 				rows={rows}
 				columns={columns}
@@ -48,6 +48,4 @@ export default function OfferList() {
 			/>
 		</div>
 	);
-
-
 }
