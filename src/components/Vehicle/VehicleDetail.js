@@ -21,6 +21,7 @@ export default function VehicleDetail() {
 
 	const submitInvoice = async (e) => {
 		e.preventDefault()
+		const deliveryDate = Math.floor(date.getTime() / 1000)
 		const {
 			first_name,
 			last_name,
@@ -49,7 +50,8 @@ export default function VehicleDetail() {
 					city: city.value,
 					country: country.value,
 					vehicle_uuid: data.uuid,
-					color: color.value
+					color: color.value,
+					delivery_date: deliveryDate
 				})
 			})
 			if (res.status === 200) {
@@ -78,8 +80,6 @@ export default function VehicleDetail() {
 			</div>
 		)
 	}
-
-	console.log(data)
 
 	return (
 		<>
