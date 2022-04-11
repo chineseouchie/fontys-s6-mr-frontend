@@ -6,8 +6,9 @@ import Login from "./components/Auth/Login";
 import Sidebar from "./components/Menu/Sidebar";
 import Vehicles from "./components/Vehicle/Vehicles";
 import VehicleDetail from "./components/Vehicle/VehicleDetail";
+import OfferList from "./components/Offer/OfferList";
+import OfferDetail from "./components/Offer/OfferDetail";
 import { UserContext } from "./providers/UserProvider";
-
 
 function App() {
 	const { user, login, logout } = useContext(UserContext)
@@ -30,6 +31,8 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/vehicles" element={<Vehicles />} />
 						<Route path="/vehicles/detail/:id" element={<VehicleDetail />} />
+						<Route path="/offers" element={<OfferList />} />
+						<Route path="/offers/detail/:id" element={<OfferDetail />} />
 					</Routes>
 					<div>
 						TEMP:
