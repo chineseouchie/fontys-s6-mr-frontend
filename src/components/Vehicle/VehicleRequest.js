@@ -56,13 +56,16 @@ export default function VehicleRequest() {
 					delivery_date: deliveryDate
 				})
 			})
+			const result = await res.json()
 			if (res.status === 200) {
-				const result = await res.json()
-				navigate("/invoice/success", { state: { offer: result, vehicle: data } })
+				enqueueSnackbar(`${result.message}`, {
+					variant: "success",
+					autoHideDuration: 2500,
+				});
 
+				navigate("/invoice/success", { state: { offer: result, vehicle: data } })
 			} else {
-				console.log("error");
-				enqueueSnackbar(`Failed to request invoice`, {
+				enqueueSnackbar(`${result.message}`, {
 					variant: "error",
 					autoHideDuration: 2500,
 				});
