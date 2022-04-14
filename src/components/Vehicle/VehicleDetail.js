@@ -1,37 +1,48 @@
-import { useParams } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Button, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 export default function VehicleDetail() {
 	const params = useParams();
-	const { data, error, loading } = useFetch(`http://localhost:8081/api/v1/vehicle/${params.id}`);
+	const location = useLocation();
+	const vehicle = location.state.vehicle;
+	const navigate = useNavigate();
 
-	if (loading) {
-		return (
-			<div>
-				...loading
-			</div>
-		)
-	}
-	if (error) {
-		return (
-			<div>
-				...something went wrong
-			</div>
-		)
-	}
+	console.log(vehicle)
 
+	const openRequest = () => {
+		navigate(`/vehicles/${params.id}/request`)
+	}
 	return (
 		<>
-			<div className={"vehicle"}>
-				<div style={{ height: 400, width: "100%" }}>
-					{data.brand.name} {data.model}
-					<div>
-						{data.colors.map((color, idx) => {
-							return (<li key={idx}>{color}</li>)
-						})}
-					</div>
-				</div>
+			Vehicle details
+			<div>
+				<Box
+					component="img"
+					sx={{
+						maxWidth: { xs: 200, md: 300 },
+					}}
+					alt="Selected vehicle."
+					src={vehicle.image_url}
+				/>
+				<Box>
+					<Typography mt={3} variant="h5">Details</Typography>
+					<Typography>Car: {vehicle.brand} {vehicle.model}</Typography>
+
+				</Box>
+				<Box>
+					Colors:
+					{vehicle.colors.map((c, i) => (
+						<div key={i}>{c}</div>
+					))}
+				</Box>
+				<Box>
+					Price: {vehicle.price}
+				</Box>
 			</div>
+			<Button variant="contained" onClick={openRequest}>Select this car</Button>
+
 		</>
 	)
 }
+
