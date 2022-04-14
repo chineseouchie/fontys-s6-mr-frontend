@@ -149,7 +149,7 @@ export default function Sidebar({ children }) {
 				<List>
 					<>
 						<MenuItem route="vehicles" text="Vehicles" icon={< CarRentalIcon />} open={open} />
-						<MenuItem route="purchaserequest" text="Purchase Request" icon={< CarRentalIcon />} open={open} />
+						<MenuItem route="purchase-request" text="Purchase Request" icon={< CarRentalIcon />} open={open} />
 					</>
 				</List>
 			</Drawer>
