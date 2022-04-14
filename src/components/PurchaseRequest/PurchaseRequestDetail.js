@@ -1,46 +1,26 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
 
 export default function PurchaseRequestDetail() {
 	const params = useParams();
-	const location = useLocation();
-	const purchaseRequest = location.state.purchaseRequest;
-	const navigate = useNavigate();
+	const uuid = params.id
 
-	console.log(purchaseRequest)
+	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}`)
 
-	const openRequest = () => {
-		navigate(`/purchaseRequests/${params.id}/request`)
+	if (loading) {
+		return <>Loading</>
 	}
+
+	if (error) {
+		return <>Something went wrong</>
+	}
+
+	console.log(data)
+
 	return (
 		<>
-			Vehicle details
-			<div>
-				<Box
-					component="img"
-					sx={{
-						maxWidth: { xs: 200, md: 300 },
-					}}
-					alt="Selected purchaseRequest."
-					src={purchaseRequest.image_url}
-				/>
-				<Box>
-					<Typography mt={3} variant="h5">Details</Typography>
-					<Typography>Car: {purchaseRequest.brand} {purchaseRequest.model}</Typography>
+			Purchase request detail
 
-				</Box>
-				<Box>
-					Colors:
-					{purchaseRequest.colors.map((c, i) => (
-						<div key={i}>{c}</div>
-					))}
-				</Box>
-				<Box>
-					Price: {purchaseRequest.price}
-				</Box>
-			</div>
-			<Button variant="contained" onClick={openRequest}>Select this car</Button>
 
 		</>
 	)
