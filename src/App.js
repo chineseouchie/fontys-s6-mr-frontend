@@ -9,6 +9,8 @@ import VehicleDetail from "./components/Vehicle/VehicleDetail";
 import { UserContext } from "./providers/UserProvider";
 import OfferSuccess from "./components/Offer/OfferSuccess";
 import VehicleRequest from "./components/Vehicle/VehicleRequest";
+import PurchaseRequest from "./components/PurchaseRequest/PurchaseRequest";
+import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestDetail";
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
 						<Route path="/vehicles/:id" element={<VehicleDetail />} />
 						<Route path="/vehicles/:id/request" element={<VehicleRequest />} />
 						<Route path="/invoice/success" element={<OfferSuccess />} />
+						<Route path="/purchase-request" element={<PurchaseRequest />} />
+						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail/>} />
 					</Routes>
 					<div>
 						TEMP:
