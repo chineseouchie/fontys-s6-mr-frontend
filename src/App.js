@@ -7,6 +7,8 @@ import Sidebar from "./components/Menu/Sidebar";
 import Vehicles from "./components/Vehicle/Vehicles";
 import VehicleDetail from "./components/Vehicle/VehicleDetail";
 import { UserContext } from "./providers/UserProvider";
+import OfferSuccess from "./components/Offer/OfferSuccess";
+import VehicleRequest from "./components/Vehicle/VehicleRequest";
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
 		} else {
 			setAuth(false)
 		}
+
 	}, [user.jwt])
 
 	return (
@@ -29,7 +32,9 @@ function App() {
 						<Route path="/" element={auth ? <Dashboard /> : <Login />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/vehicles" element={<Vehicles />} />
-						<Route path="/vehicles/detail/:id" element={<VehicleDetail />} />
+						<Route path="/vehicles/:id" element={<VehicleDetail />} />
+						<Route path="/vehicles/:id/request" element={<VehicleRequest />} />
+						<Route path="/invoice/success" element={<OfferSuccess />} />
 					</Routes>
 					<div>
 						TEMP:
