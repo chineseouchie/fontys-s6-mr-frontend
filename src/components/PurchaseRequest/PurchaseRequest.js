@@ -4,7 +4,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { Card, Grid } from "@mui/material";
 
 export default function PurchaseRequest() {
-	const { data, error, loading } = useFetch("http://localhost:8081/api/v1/purchaserequest");;
+	const { data, error, loading } = useFetch("http://localhost:8087/api/v1/purchase-request/dealer/requests", "company_ABC");
 
 	if (loading) {
 		return (
