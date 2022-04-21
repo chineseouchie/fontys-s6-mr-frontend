@@ -24,7 +24,7 @@ export default function PurchaseRequest() {
 		arr.push({
 			uuid: item.uuid,
 			delivery_date: new Date(item.delivery_date * 1000),
-			delivery_price: String("€ " + item.delivery_price),
+			delivery_price: `€ ${item.delivery_price}`,
 			model_name: item.model_name,
 			purchase_request_uuid: item.purchase_request_uuid,
 			brand_name: item.brand_name,
