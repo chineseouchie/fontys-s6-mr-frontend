@@ -1,11 +1,13 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-function FetchException(message, code) {
-	this.message = message
-	this.code = code
+class FetchException {
+	constructor(message, code) {
+		this.message = message;
+		this.code = code;
 
-	return { message: this.message, code: this.code }
+		return { message: this.message, code: this.code };
+	}
 }
 
 export const useFetch = (url, token) => {
