@@ -1,8 +1,8 @@
 import "./purchase.css"
-
+import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { Card, Grid } from "@mui/material";
-import {DataGrid} from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
 	{ field: "brand_name", headerName: "Brand", width: 250 },
@@ -14,19 +14,20 @@ const columns = [
 export default function PurchaseRequest() {
 	const { data } = useFetch("http://localhost:8087/api/v1/purchase-request/dealer/requests", "company_ABC");
 
-	function funcJoey(uuid) {
-		console.log(uuid)
+	const navigate = useNavigate();
+	function onPurchaseRequestClick(uuid) {
+		navigate(`/purchase-request/${uuid}`)
 	}
 
 	const arr = [];
 	data.map((item) =>
 		arr.push({
-			"uuid": item.uuid,
-			"delivery_date": new Date(item.delivery_date * 1000),
-			"delivery_price": String("€ " + item.delivery_price),
-			"model_name": item.model_name,
-			"purchase_request_uuid": item.purchase_request_uuid,
-			"brand_name": item.brand_name,
+			uuid: item.uuid,
+			delivery_date: new Date(item.delivery_date * 1000),
+			delivery_price: String("€ " + item.delivery_price),
+			model_name: item.model_name,
+			purchase_request_uuid: item.purchase_request_uuid,
+			brand_name: item.brand_name,
 		})
 	);
 
@@ -42,7 +43,7 @@ export default function PurchaseRequest() {
 							columns={columns}
 							pageSize={5}
 							rowsPerPageOptions={[5]}
-							onRowClick={(row) => {funcJoey(row.id)}}
+							onRowClick={(row) => { onPurchaseRequestClick(row.id) }}
 						/>
 					</div>
 				</Grid>
