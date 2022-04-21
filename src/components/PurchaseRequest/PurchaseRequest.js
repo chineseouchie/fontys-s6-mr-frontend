@@ -18,6 +18,18 @@ export default function PurchaseRequest() {
 		console.log(uuid)
 	}
 
+	const arr = [];
+	data.map((item) =>
+		arr.push({
+			"uuid": item.uuid,
+			"delivery_date": new Date(item.delivery_date * 1000),
+			"delivery_price": String("€ " + item.delivery_price),
+			"model_name": item.model_name,
+			"purchase_request_uuid": item.purchase_request_uuid,
+			"brand_name": item.brand_name,
+		})
+	);
+
 	return (
 		<div>
 			<Card className={"purchaseRequest_container"}>
@@ -26,7 +38,7 @@ export default function PurchaseRequest() {
 					<div style={{ height: 400, width: "100%" }}>
 						<DataGrid
 							getRowId={(row) => row.uuid}
-							rows={data}
+							rows={arr}
 							columns={columns}
 							pageSize={5}
 							rowsPerPageOptions={[5]}
