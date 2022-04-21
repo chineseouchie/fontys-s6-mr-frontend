@@ -16,24 +16,21 @@ const columns = [
 
 //Mock data
 const rows = [
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu1", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu2", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu3", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu4", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu5", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu6", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu7", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu8", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu9", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu10", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 },
-	{ uuid: "gshd-asd232-asdhgaj83-sadtu11", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Black", vehiclePrice: 4300.99 }
+	{ uuid: "offerABC", firstName: "Jip", lastName: "Veeke", vehicleBrand: "Opel", vehicleModel: "Astra", vehicleColor: "Zwart", vehiclePrice: 4300, deliveryDate: 1649923686 },
+	{ uuid: "offerDEF", firstName: "Niek", lastName: "Moor", vehicleBrand: "Toyota", vehicleModel: "Prius", vehicleColor: "Roze", vehiclePrice: 2, deliveryDate: 1650536779 },
+	{ uuid: "offerGHI", firstName: "Servi Pieter Gerardus Isaac", lastName: "Huijbregts", vehicleBrand: "Toyota", vehicleModel: "Aygo", vehicleColor: "Geel", vehiclePrice: 4300, deliveryDate: 1650536788 }
 ];
 
 export default function OfferList() {
 	const navigate = useNavigate();
+	const onRowClicked = ({ id, row }) => {
 
-	const onRowClicked = ({ id }) => {
-		navigate(`/offers/detail/${id}`);
+		navigate(`/offers/detail/${id}`, {
+			state: {
+				deliveryPrice: row.vehiclePrice,
+				deliveryDate: row.deliveryDate,
+			}
+		});
 	};
 
 	return (

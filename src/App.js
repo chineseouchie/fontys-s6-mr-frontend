@@ -7,7 +7,7 @@ import Sidebar from "./components/Menu/Sidebar";
 import Vehicles from "./components/Vehicle/Vehicles";
 import VehicleDetail from "./components/Vehicle/VehicleDetail";
 import OfferList from "./components/Offer/OfferList";
-import OfferDetail from "./components/Offer/OfferDetail";
+import CreatePurchaseRequest from "./components/Purchaserequest/CreatePurchaseRequest";
 import { UserContext } from "./providers/UserProvider";
 
 function App() {
@@ -32,7 +32,8 @@ function App() {
 						<Route path="/vehicles" element={<Vehicles />} />
 						<Route path="/vehicles/detail/:id" element={<VehicleDetail />} />
 						<Route path="/offers" element={<OfferList />} />
-						<Route path="/offers/detail/:id" element={<OfferDetail />} />
+						<Route path="/offers/detail/:id" element={<CreatePurchaseRequest />} />
+						<Route path="/offers/purchaserequest/create" element={<CreatePurchaseRequest />} />
 					</Routes>
 					<div>
 						TEMP:
