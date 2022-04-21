@@ -11,7 +11,8 @@ import OfferSuccess from "./components/Offer/OfferSuccess";
 import VehicleRequest from "./components/Vehicle/VehicleRequest";
 import PurchaseRequest from "./components/PurchaseRequest/PurchaseRequest";
 import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestDetail";
-
+import Http404 from "./components/HttpError/Http404"
+import Http500 from "./components/HttpError/Http500"
 
 function App() {
 	const { user } = useContext(UserContext)
@@ -38,7 +39,9 @@ function App() {
 						<Route path="/vehicles/:id/request" element={<VehicleRequest />} />
 						<Route path="/invoice/success" element={<OfferSuccess />} />
 						<Route path="/purchase-request" element={<PurchaseRequest />} />
-						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail/>} />
+						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />
+						<Route path="/404" element={<Http404 />} />
+						<Route path="/500" element={<Http500 />} />
 					</Routes>
 				</Sidebar>
 			</Router>
