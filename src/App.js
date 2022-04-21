@@ -11,6 +11,8 @@ import OfferSuccess from "./components/Offer/OfferSuccess";
 import VehicleRequest from "./components/Vehicle/VehicleRequest";
 import PurchaseRequest from "./components/PurchaseRequest/PurchaseRequest";
 import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestDetail";
+import PurchaseOrderDetail from "./components/PurchaseOrder/PurchaseOrderDetail";
+import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
 
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
 						<Route path="/invoice/success" element={<OfferSuccess />} />
 						<Route path="/purchase-request" element={<PurchaseRequest />} />
 						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail/>} />
+						<Route path="/purchase-order" element={<PurchaseOrder />} />
+						<Route path="/purchase-order/:id" element={<PurchaseOrderDetail />} />
 					</Routes>
 				</Sidebar>
 			</Router>
