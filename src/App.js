@@ -14,7 +14,7 @@ import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestD
 
 
 function App() {
-	const { user, login, logout } = useContext(UserContext)
+	const { user } = useContext(UserContext)
 	const [auth, setAuth] = useState(false)
 
 	useEffect(() => {
@@ -40,11 +40,6 @@ function App() {
 						<Route path="/purchase-request" element={<PurchaseRequest />} />
 						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail/>} />
 					</Routes>
-					<div>
-						TEMP:
-						<button onClick={() => login("test")}>setCookie</button>
-						<button onClick={() => logout()}>removeCookie</button>
-					</div>
 				</Sidebar>
 			</Router>
 		</div>
