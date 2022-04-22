@@ -13,6 +13,9 @@ import PurchaseRequest from "./components/PurchaseRequest/PurchaseRequest";
 import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestDetail";
 import Http404 from "./components/HttpError/Http404"
 import Http500 from "./components/HttpError/Http500"
+import PurchaseOrderDetail from "./components/PurchaseOrder/PurchaseOrderDetail";
+import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
+
 
 function App() {
 	const { user } = useContext(UserContext)
@@ -42,6 +45,9 @@ function App() {
 						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />
 						<Route path="/404" element={<Http404 />} />
 						<Route path="/500" element={<Http500 />} />
+						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />
+						<Route path="/purchase-order" element={<PurchaseOrder />} />
+						<Route path="/purchase-order/:id" element={<PurchaseOrderDetail />} />
 					</Routes>
 				</Sidebar>
 			</Router>

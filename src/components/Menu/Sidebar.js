@@ -14,6 +14,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LoginIcon from "@mui/icons-material/Login";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import CarCrashIcon from "@mui/icons-material/CarCrash";
 import CarRentalIcon from "@mui/icons-material/CarRental";
 import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserProvider";
@@ -138,6 +139,7 @@ export default function Sidebar({ children }) {
 							<>
 								<MenuItem route="/" text="Dashboard" icon={<DashboardIcon />} open={open} />
 								<MenuItem route="purchase-request" text="Purchase Request" icon={< AddShoppingCartIcon />} open={open} />
+								<MenuItem route="purchase-order" text="Purchase Order" icon={< CarCrashIcon />} open={open} />
 							</>
 						)
 						:
