@@ -1,7 +1,8 @@
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { useSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { unixToDate } from "../../utils/date";
 
@@ -9,6 +10,8 @@ export default function PurchaseRequestDetail() {
 	const params = useParams();
 	const uuid = params.id
 	const [cookies] = useCookies(["mr_jwt"]);
+	const navigate = useNavigate();
+	const { enqueueSnackbar } = useSnackbar();
 	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}`, cookies.mr_jwt)
 
 	if (loading) {
@@ -19,20 +22,37 @@ export default function PurchaseRequestDetail() {
 		return <>Something went wrong</>
 	}
 
-	const acceptPR = async () => {
-		const res = await fetch(`http://localhost:8087/api/v1/purchase-request/${uuid}/accept`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": cookies.mr_jwt
+	const responsePR = async (accepted) => {
+		const type = accepted ? "accept" : "decline"
+
+		try {
+			const res = await fetch(`http://localhost:8087/api/v1/purchase-request/${uuid}/${type}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": cookies.mr_jwt
+				}
+			})
+			if (res.status === 200) {
+				enqueueSnackbar(`Purchase request ${accepted ? "accepted" : "declined"}`, {
+					variant: "success",
+					autoHideDuration: 2500,
+				});
+				navigate("/purchase-request")
+			} else {
+				enqueueSnackbar(`Something went wrong. Try later again`, {
+					variant: "error",
+					autoHideDuration: 2500,
+				});
 			}
-		})
-		const result = await res.json();
 
-		console.log(result)
-	}
-
-	const declinePR = () => {
+		} catch (e) {
+			enqueueSnackbar(`Something went wrong. Try later again`, {
+				variant: "error",
+				autoHideDuration: 2500,
+			});
+			navigate("/500")
+		}
 
 	}
 
@@ -63,8 +83,8 @@ export default function PurchaseRequestDetail() {
 				</Box>
 			</div>
 			<div>
-				<Button variant="contained" onClick={acceptPR}>Accept</Button>
-				<Button variant="contained" color="error" onClick={declinePR}>Decline</Button>
+				<Button variant="contained" onClick={() => responsePR(true)}>Accept</Button>
+				<Button variant="contained" color="error" onClick={() => responsePR(false)}>Decline</Button>
 			</div>
 
 		</>
