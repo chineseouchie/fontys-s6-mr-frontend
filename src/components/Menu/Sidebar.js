@@ -19,7 +19,7 @@ import CarRentalIcon from "@mui/icons-material/CarRental";
 import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserProvider";
 import MenuItem from "./MenuItem";
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
 import "./Sidebar.css";
 
 
@@ -170,7 +170,7 @@ export default function Sidebar({ children }) {
 					(
 						<>
 							<div>
-								<Button className="log-button" variant="contained" onClick={() => login("test")}>setCookie (Log In)</Button>
+								<Button className="log-button" variant="contained" onClick={() => login("company_ABC")}>setCookie (Log In)</Button>
 							</div>
 						</>
 					)

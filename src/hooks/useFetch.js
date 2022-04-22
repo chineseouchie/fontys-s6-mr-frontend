@@ -1,10 +1,20 @@
 
 import { useEffect, useState } from "react";
-export const useFetch = ( url, token )=> {
+import { useNavigate } from "react-router-dom";
+class FetchException {
+	constructor(message, code) {
+		this.message = message;
+		this.code = code;
+
+		return { message: this.message, code: this.code };
+	}
+}
+
+export const useFetch = (url, token) => {
 	const [data, setData] = useState([]);
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true);
-
+	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchData = async () => {
 			setLoading(true);
@@ -22,21 +32,33 @@ export const useFetch = ( url, token )=> {
 
 
 			try {
-				const res = await fetch(url, {headers: config});
+				const res = await fetch(url, { headers: config });
 				if (res.status !== 200) {
-					throw await res.text();
+					// throw ({ message: await res.text(), code: res.status })
+					throw new FetchException(await res.text(), res.status)
 				}
 				const json = await res.json();
 				setData(json);
 				setLoading(false);
 			} catch (err) {
-				console.log(err);
+				if (err.code === 404) {
+					return navigate(`/404`)
+				}
+
+				/*eslint indent: ["error","tab", {"SwitchCase": 1}]*/
+				switch (err.code) {
+					case 404:
+						navigate(`/404`)
+						break;
+					default:
+						navigate("/500")
+				}
 				setError(err);
 				setLoading(false);
 			}
 		};
 
 		fetchData();
-	}, [url]);
+	}, [url, token]);
 	return { data, error, loading };
 }
