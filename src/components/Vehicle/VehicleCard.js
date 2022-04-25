@@ -5,10 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function VehicleCard({ vehicle }) {
 	const navigate = useNavigate();
-
 	return (
 		<Grid item xs={2} sm={4} md={4}>
-			<Card onClick={() => { navigate(`/vehicles/detail/${vehicle.uuid}`) }}>
+			<Card onClick={() => { navigate(`/vehicles/${vehicle.uuid}`, { state: { vehicle: vehicle } }) }}>
 				<CardActionArea>
 					<CardMedia
 						className={"vehicle-image"}
@@ -18,7 +17,7 @@ export default function VehicleCard({ vehicle }) {
 					/>
 					<CardContent>
 						<Typography variant="h5" component="div">
-							{vehicle.brand.name} - {vehicle.model}
+							{vehicle.brand} - {vehicle.model}
 						</Typography>
 						<Typography variant="body2" color="text.secondary">
 							LEASEPRIJS VANAF €{vehicle.price} P/M

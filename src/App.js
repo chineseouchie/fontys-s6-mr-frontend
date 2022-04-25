@@ -9,9 +9,17 @@ import VehicleDetail from "./components/Vehicle/VehicleDetail";
 import OfferList from "./components/Offer/OfferList";
 import CreatePurchaseRequest from "./components/Purchaserequest/CreatePurchaseRequest";
 import { UserContext } from "./providers/UserProvider";
+import OfferSuccess from "./components/Offer/OfferSuccess";
+import VehicleRequest from "./components/Vehicle/VehicleRequest";
+import PurchaseRequest from "./components/PurchaseRequest/PurchaseRequest";
+import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestDetail";
+import Http404 from "./components/HttpError/Http404"
+import Http500 from "./components/HttpError/Http500"
+import PurchaseOrderDetail from "./components/PurchaseOrder/PurchaseOrderDetail";
+import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
 
 function App() {
-	const { user, login, logout } = useContext(UserContext)
+	const { user } = useContext(UserContext)
 	const [auth, setAuth] = useState(false)
 
 	useEffect(() => {
@@ -20,6 +28,7 @@ function App() {
 		} else {
 			setAuth(false)
 		}
+
 	}, [user.jwt])
 
 	return (
@@ -30,16 +39,24 @@ function App() {
 						<Route path="/" element={auth ? <Dashboard /> : <Login />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/vehicles" element={<Vehicles />} />
+<<<<<<< HEAD
 						<Route path="/vehicles/detail/:id" element={<VehicleDetail />} />
 						<Route path="/offers" element={<OfferList />} />
 						<Route path="/offers/detail/:id" element={<CreatePurchaseRequest />} />
 						<Route path="/offers/purchaserequest/create" element={<CreatePurchaseRequest />} />
+=======
+						<Route path="/vehicles/:id" element={<VehicleDetail />} />
+						<Route path="/vehicles/:id/request" element={<VehicleRequest />} />
+						<Route path="/invoice/success" element={<OfferSuccess />} />
+						<Route path="/purchase-request" element={<PurchaseRequest />} />
+						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />
+						<Route path="/404" element={<Http404 />} />
+						<Route path="/500" element={<Http500 />} />
+						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />
+						<Route path="/purchase-order" element={<PurchaseOrder />} />
+						<Route path="/purchase-order/:id" element={<PurchaseOrderDetail />} />
+>>>>>>> master
 					</Routes>
-					<div>
-						TEMP:
-						<button onClick={() => login("test")}>setCookie</button>
-						<button onClick={() => logout()}>removeCookie</button>
-					</div>
 				</Sidebar>
 			</Router>
 		</div>
