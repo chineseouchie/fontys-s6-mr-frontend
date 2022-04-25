@@ -39,12 +39,10 @@ function App() {
 						<Route path="/" element={auth ? <Dashboard /> : <Login />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/vehicles" element={<Vehicles />} />
-<<<<<<< HEAD
 						<Route path="/vehicles/detail/:id" element={<VehicleDetail />} />
 						<Route path="/offers" element={<OfferList />} />
 						<Route path="/offers/detail/:id" element={<CreatePurchaseRequest />} />
 						<Route path="/offers/purchaserequest/create" element={<CreatePurchaseRequest />} />
-=======
 						<Route path="/vehicles/:id" element={<VehicleDetail />} />
 						<Route path="/vehicles/:id/request" element={<VehicleRequest />} />
 						<Route path="/invoice/success" element={<OfferSuccess />} />
@@ -55,7 +53,6 @@ function App() {
 						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />
 						<Route path="/purchase-order" element={<PurchaseOrder />} />
 						<Route path="/purchase-order/:id" element={<PurchaseOrderDetail />} />
->>>>>>> master
 					</Routes>
 				</Sidebar>
 			</Router>
