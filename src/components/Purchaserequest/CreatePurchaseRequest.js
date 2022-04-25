@@ -2,16 +2,24 @@ import { useSnackbar } from "notistack"
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
 
 export default function CreatePurchaseRequest() {
 	const { enqueueSnackbar } = useSnackbar();
 
 	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
+	const { data, error, loading } = useFetch("http://localhost:8086/api/v1/offer/" + params.id);
 
-	useEffect(() => {
-		const offer = fetchOffer(params.id);
-	});
+	if (loading) {
+		return "loading...";
+	}
+
+	if (error) {
+		return "error."
+	}
+
+	console.log(data);
 
 	//Mock data
 	const dealers = [
@@ -25,44 +33,41 @@ export default function CreatePurchaseRequest() {
 		{ field: "name", headerName: "company name", flex: 1 }
 	];
 
-	const submitSelection = function () {
-		const requestOptions = {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				offerUuid: params.id,
-				//deliveryDate: deliveryDate,
-				//deliveryPrice: deliveryPrice,
-				companyUuids: selectedCompanyIds
-			})
-		};
-		performRequest(requestOptions);
-	}
+	const submitSelection = async function () {
+		console.log(data.vehicle.price);
 
-	const fetchOffer = function (offerUuid) {
-		const offer = fetch("http://localhost:8086/api/v1/offer/" + offerUuid)
-			.then(response => response.json()
-				.then(console.log(response)));
-	}
-
-	const performRequest = function (requestOptions) {
-		fetch("http://localhost:8087/api/v1/purchase-request/create", requestOptions)
-			.then(response => response.json()
-				.then(handleResponse(response)));
-	}
-
-	const handleResponse = function (response) {
-		if (response.status === 200 || response.status === 201) {
-			enqueueSnackbar(`Purchase request created.`, {
-				variant: "success",
-				autoHideDuration: 2500,
+		try {
+			const response = await fetch("http://localhost:8087/api/v1/purchase-request/create", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					offerUuid: params.id,
+					deliveryDate: data.delivery_date,
+					deliveryPrice: data.delivery_price,
+					companyUuids: selectedCompanyIds
+				})
 			});
-		} else {
-			if (response.status === 404)
-				enqueueSnackbar(`Invalid offer id. The offer was not found.`, {
-					variant: "warning",
+
+			if (response.status === 200 || response.status === 201) {
+				const json = response.json();
+				console.log(json);
+				enqueueSnackbar(`Purchase request created.`, {
+					variant: "success",
 					autoHideDuration: 2500,
 				});
+			} else {
+				console.log(response.status);
+				enqueueSnackbar(`Something went wrong.`, {
+					variant: "error",
+					autoHideDuration: 2500,
+				});
+			}
+		} catch (e) {
+			console.log(e)
+			enqueueSnackbar("Something went wrong.", {
+				variant: "error",
+				autoHideDuration: 2500,
+			});
 		}
 	}
 
