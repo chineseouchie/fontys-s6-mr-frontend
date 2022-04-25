@@ -1,20 +1,17 @@
 import { useSnackbar } from "notistack"
 import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 export default function CreatePurchaseRequest() {
-
-	const params = useParams();
-	const location = useLocation();
-
 	const { enqueueSnackbar } = useSnackbar();
 
-	const offerUuid = params.id;
-	const deliveryDate = location.state.deliveryDate;
-	const deliveryPrice = location.state.deliveryPrice;
-
+	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
+
+	useEffect(() => {
+		const offer = fetchOffer(params.id);
+	});
 
 	//Mock data
 	const dealers = [
@@ -29,28 +26,23 @@ export default function CreatePurchaseRequest() {
 	];
 
 	const submitSelection = function () {
-
-		console.log(deliveryDate);
-		console.log(deliveryPrice);
-
-		console.log(JSON.stringify({
-			offerUuid: offerUuid,
-			deliveryDate: deliveryDate,
-			deliveryPrice: deliveryPrice,
-			companyUuids: selectedCompanyIds
-		}));
-
 		const requestOptions = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
-				offerUuid: offerUuid,
-				deliveryDate: deliveryDate,
-				deliveryPrice: deliveryPrice,
+				offerUuid: params.id,
+				//deliveryDate: deliveryDate,
+				//deliveryPrice: deliveryPrice,
 				companyUuids: selectedCompanyIds
 			})
 		};
 		performRequest(requestOptions);
+	}
+
+	const fetchOffer = function (offerUuid) {
+		const offer = fetch("http://localhost:8086/api/v1/offer/" + offerUuid)
+			.then(response => response.json()
+				.then(console.log(response)));
 	}
 
 	const performRequest = function (requestOptions) {
@@ -71,7 +63,6 @@ export default function CreatePurchaseRequest() {
 					variant: "warning",
 					autoHideDuration: 2500,
 				});
-
 		}
 	}
 
