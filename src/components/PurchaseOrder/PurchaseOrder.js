@@ -8,15 +8,15 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 export default function PurchaseOrder() {
 	const { data } = useFetch("http://localhost:8086/api/v1/purchase_order/company_ABC");
 	const columns = [
-		{ field: "image_url", headerName: "Preview",  width: 150,
+		{ field: "image_url", headerName: "Preview",  flex: 150,
 			renderCell: (params) => <img className={"car_image"} src={params.value}  alt={"Car"}/>},
-		{ field: "brand", headerName: "Brand", width: 150 },
-		{ field: "model", headerName: "Model", width: 200 },
-		{ field: "color", headerName: "Color", width: 200 },
-		{ field: "delivery_price", headerName: "Delivery Price", width: 150 },
-		{ field: "delivery_date", headerName: "Delivery Date", width: 150 },
-		{ field: "created_time", headerName: "Request made on", width: 150 },
-		{ field: "uuid", headerName: "Order Ready", width: 150,
+		{ field: "brand", headerName: "Brand", flex: 150 },
+		{ field: "model", headerName: "Model", flex: 200 },
+		{ field: "color", headerName: "Color", flex: 200 },
+		{ field: "delivery_price", headerName: "Delivery Price", flex: 150 },
+		{ field: "delivery_date", headerName: "Delivery Date", flex: 150 },
+		{ field: "created_time", headerName: "Request made on", flex: 150 },
+		{ field: "uuid", headerName: "Order Ready", flex: 150,
 			renderCell: (params) =>
 				<div>
 					<Button className={"buttonStyle"} variant="outlined" onClick={() => {onPurchaseOrderClick(params)}}>
@@ -38,7 +38,6 @@ export default function PurchaseOrder() {
 			delivery_date: new Date(item.delivery_date * 1000).toLocaleDateString(),
 			delivery_price: `€ ${item.delivery_price}`,
 			model: item.model,
-			price: item.price.toString(),
 			brand: item.brand,
 			image_url: item.image_url,
 			color: item.color,
