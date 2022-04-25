@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LoginIcon from "@mui/icons-material/Login";
@@ -138,6 +139,7 @@ export default function Sidebar({ children }) {
 						(
 							<>
 								<MenuItem route="/" text="Dashboard" icon={<DashboardIcon />} open={open} />
+								<MenuItem route="offers" text="Offers" icon={< AssignmentIcon />} open={open} />
 								<MenuItem route="purchase-request" text="Purchase Request" icon={< AddShoppingCartIcon />} open={open} />
 								<MenuItem route="purchase-order" text="Purchase Order" icon={< CarCrashIcon />} open={open} />
 							</>
@@ -157,6 +159,7 @@ export default function Sidebar({ children }) {
 						<MenuItem route="vehicles" text="Vehicles" icon={< CarRentalIcon />} open={open} />
 
 					</>
+
 				</List>
 				{user.jwt ?
 					(

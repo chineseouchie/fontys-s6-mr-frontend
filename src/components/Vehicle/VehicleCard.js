@@ -22,8 +22,6 @@ export default function VehicleCard({ vehicle }) {
 						<Typography variant="body2" color="text.secondary">
 							LEASEPRIJS VANAF €{vehicle.price} P/M
 						</Typography>
-
-
 					</CardContent>
 				</CardActionArea>
 			</Card>
