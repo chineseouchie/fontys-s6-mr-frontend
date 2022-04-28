@@ -37,7 +37,7 @@ export default function VehicleRequest() {
 			country,
 			color } = e.target
 		try {
-			const res = await fetch("http://localhost:8086/api/v1/offer/request", {
+			const res = await fetch("http://localhost:8083/api/v1/offer/request", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({

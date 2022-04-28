@@ -13,7 +13,7 @@ const columns = [
 
 export default function PurchaseRequest() {
 	const { data } = useFetch("http://localhost:8087/api/v1/purchase-request/dealer/requests", "company_ABC");
-
+	console.log(data);
 	const navigate = useNavigate();
 	function onPurchaseRequestClick(uuid) {
 		navigate(`/purchase-request/${uuid}`)
@@ -22,11 +22,11 @@ export default function PurchaseRequest() {
 	const arr = [];
 	data.map((item) =>
 		arr.push({
-			uuid: item.uuid,
+			purchase_request_company_uuid: item.purchase_request_company_uuid,
+			purchase_request_uuid: item.purchase_request_uuid,
 			delivery_date: new Date(item.delivery_date * 1000),
 			delivery_price: `€ ${item.delivery_price}`,
 			model_name: item.model_name,
-			purchase_request_uuid: item.purchase_request_uuid,
 			brand_name: item.brand_name,
 		})
 	);
@@ -38,7 +38,7 @@ export default function PurchaseRequest() {
 				<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 					<div style={{ height: 400, width: "100%" }}>
 						<DataGrid
-							getRowId={(row) => row.uuid}
+							getRowId={(row) => row.purchase_request_company_uuid}
 							rows={arr}
 							columns={columns}
 							pageSize={5}

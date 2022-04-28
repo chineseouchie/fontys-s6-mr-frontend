@@ -8,7 +8,7 @@ export default function CreatePurchaseRequest() {
 	const { enqueueSnackbar } = useSnackbar();
 	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
-	const { data, error, loading } = useFetch(`http://localhost:8086/api/v1/offer/${params.id}`);
+	const { data, error, loading } = useFetch(`http://localhost:8083/api/v1/offer/${params.id}`);
 
 	if (loading) {
 		return "loading...";

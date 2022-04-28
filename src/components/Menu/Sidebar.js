@@ -139,9 +139,10 @@ export default function Sidebar({ children }) {
 						(
 							<>
 								<MenuItem route="/" text="Dashboard" icon={<DashboardIcon />} open={open} />
-								<MenuItem route="offers" text="Offers" icon={< AssignmentIcon />} open={open} />
-								<MenuItem route="purchase-request" text="Purchase Request" icon={< AddShoppingCartIcon />} open={open} />
-								<MenuItem route="purchase-order" text="Purchase Order" icon={< CarCrashIcon />} open={open} />
+								<MenuItem route="offers" text="Offers (Medewerker)" icon={< AssignmentIcon />} open={open} />
+								<MenuItem route="purchase-request" text="Purchase Request (Dealer)" icon={< AddShoppingCartIcon />} open={open} />
+								<MenuItem route="purchase-request-accepted" text="Accepted PR (Medewerker)" icon={< AddShoppingCartIcon />} open={open} />
+								<MenuItem route="purchase-order" text="Purchase Order (Dealer)" icon={< CarCrashIcon />} open={open} />
 							</>
 						)
 						:

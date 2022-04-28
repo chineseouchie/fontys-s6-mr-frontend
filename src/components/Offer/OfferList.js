@@ -12,7 +12,7 @@ const columns = [
 
 export default function OfferList() {
 	const navigate = useNavigate();
-	const { data, error, loading } = useFetch("http://localhost:8086/api/v1/offer/")
+	const { data, error, loading } = useFetch("http://localhost:8083/api/v1/offer/")
 
 	if (loading) {
 		return "loading"
