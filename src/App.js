@@ -7,12 +7,12 @@ import Sidebar from "./components/Menu/Sidebar";
 import Vehicles from "./components/Vehicle/Vehicles";
 import VehicleDetail from "./components/Vehicle/VehicleDetail";
 import OfferList from "./components/Offer/OfferList";
-import CreatePurchaseRequest from "./components/Purchaserequest/CreatePurchaseRequest";
+import CreatePurchaseRequest from "./components/PurchaseRequest/CreatePurchaseRequest";
 import { UserContext } from "./providers/UserProvider";
 import OfferSuccess from "./components/Offer/OfferSuccess";
 import VehicleRequest from "./components/Vehicle/VehicleRequest";
-import PurchaseRequest from "./components/PurchaseRequest/PurchaseRequest";
-import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestDetail";
+import PurchaseRequest from "./components/PurchaseRequest/PurchaseRequest"
+import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestDetail"
 import Http404 from "./components/HttpError/Http404"
 import Http500 from "./components/HttpError/Http500"
 import PurchaseOrderDetail from "./components/PurchaseOrder/PurchaseOrderDetail";
