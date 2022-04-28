@@ -5,7 +5,7 @@ const columns = [
 ];
 
 export default function DealerList({ setSelectedIds }) {
-	const { data, error, loading } = useFetch("http://localhost:8086/api/v1/purchase-request/dealers");
+	const { data, error, loading } = useFetch("http://localhost:8087/api/v1/purchase-request/dealers");
 
 	if (loading) {
 		return "loading...";
