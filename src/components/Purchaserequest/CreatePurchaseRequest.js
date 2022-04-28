@@ -1,12 +1,11 @@
 import { useSnackbar } from "notistack"
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 
 export default function CreatePurchaseRequest() {
 	const { enqueueSnackbar } = useSnackbar();
-
 	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
 	const { data, error, loading } = useFetch("http://localhost:8086/api/v1/offer/" + params.id);
@@ -16,6 +15,7 @@ export default function CreatePurchaseRequest() {
 	}
 
 	if (error) {
+		console.log(error);
 		return "error."
 	}
 
@@ -34,8 +34,6 @@ export default function CreatePurchaseRequest() {
 	];
 
 	const submitSelection = async function () {
-		console.log(data.vehicle.price);
-
 		try {
 			const response = await fetch("http://localhost:8087/api/v1/purchase-request/create", {
 				method: "POST",
@@ -73,10 +71,7 @@ export default function CreatePurchaseRequest() {
 
 	return (
 		<div className="offer">
-			<div className="{}">
-
-			</div>
-			<div className={"Offer-details"}>
+			<div className={"offer-details"}>
 				<DataGrid
 					rows={dealers}
 					columns={columns}
