@@ -1,4 +1,3 @@
-import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
