@@ -1,14 +1,14 @@
 import { useSnackbar } from "notistack"
-import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import DealerList from "./DealerList";
 
 export default function CreatePurchaseRequest() {
 	const { enqueueSnackbar } = useSnackbar();
 	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
-	const { data, error, loading } = useFetch("http://localhost:8086/api/v1/offer/" + params.id);
+	const { data, error, loading } = useFetch(`http://localhost:8086/api/v1/offer/${params.id}`);
 
 	if (loading) {
 		return "loading...";
@@ -20,18 +20,6 @@ export default function CreatePurchaseRequest() {
 	}
 
 	console.log(data);
-
-	//Mock data
-	const dealers = [
-		{ uuid: "company_ABC", name: "Broken vehicles LLC" },
-		{ uuid: "company_DEF", name: "Outdated parts garage" },
-		{ uuid: "company_GHI", name: "DIY safetycars" },
-		{ uuid: "company_JKL", name: "Servicable cars shop" }
-	];
-
-	const columns = [
-		{ field: "name", headerName: "company name", flex: 1 }
-	];
 
 	const submitSelection = async function () {
 		try {
@@ -71,20 +59,7 @@ export default function CreatePurchaseRequest() {
 
 	return (
 		<div className="offer">
-			<div className={"offer-details"}>
-				<DataGrid
-					rows={dealers}
-					columns={columns}
-					autoHeight
-					getRowId={(dealers) => dealers.uuid}
-					checkboxSelection
-
-					onSelectionModelChange={(ids) => {
-						setSelectedIds(ids)
-					}}
-				/>
-			</div>
-
+			<DealerList setSelectedIds={setSelectedIds} />
 			<button onClick={submitSelection}>Create purchase request!</button>
 		</div>
 	);
