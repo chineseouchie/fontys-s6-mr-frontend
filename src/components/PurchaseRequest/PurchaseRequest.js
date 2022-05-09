@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { Card, Grid } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import {useCookies} from "react-cookie";
+import { useCookies } from "react-cookie";
 
 const columns = [
 	{ field: "brand_name", headerName: "Brand", width: 250 },
@@ -17,6 +17,7 @@ export default function PurchaseRequest() {
 	const { data } = useFetch("http://localhost:8087/api/v1/purchase-request/dealer/requests", cookies.mr_jwt);
 	console.log(data);
 	const navigate = useNavigate();
+
 	function onPurchaseRequestClick(uuid) {
 		navigate(`/purchase-request/${uuid}`)
 	}

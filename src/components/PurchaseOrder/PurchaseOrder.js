@@ -1,26 +1,29 @@
 import "./purchaseorder.css"
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
-import {Button, Card, Grid} from "@mui/material";
+import { Button, Card, Grid } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 export default function PurchaseOrder() {
 	const { data } = useFetch("http://localhost:8086/api/v1/purchase_order/company_ABC");
 	const columns = [
-		{ field: "image_url", headerName: "Preview",  flex: 2,
-			renderCell: (params) => <img className={"car_image"} src={params.value}  alt={"Car"}/>},
+		{
+			field: "image_url", headerName: "Preview", flex: 2,
+			renderCell: (params) => <img className={"car_image"} src={params.value} alt={"Car"} />
+		},
 		{ field: "brand", headerName: "Brand", flex: 1 },
 		{ field: "model", headerName: "Model", flex: 1 },
 		{ field: "color", headerName: "Color", flex: 1 },
 		{ field: "delivery_price", headerName: "Delivery Price", flex: 1 },
 		{ field: "delivery_date", headerName: "Delivery Date", flex: 1 },
 		{ field: "created_time", headerName: "Request made on", flex: 1 },
-		{ field: "uuid", headerName: "Order Ready", flex: 2,
+		{
+			field: "uuid", headerName: "Order Ready", flex: 2,
 			renderCell: (params) =>
 				<div>
-					<Button className={"buttonStyle"} variant="outlined" onClick={() => {onPurchaseOrderClick(params)}}>
-						<CheckBoxIcon/>
+					<Button className={"buttonStyle"} variant="outlined" onClick={() => { onPurchaseOrderClick(params) }}>
+						<CheckBoxIcon />
 					</Button>
 				</div>
 		},
@@ -43,8 +46,6 @@ export default function PurchaseOrder() {
 			color: item.color,
 		})
 	);
-
-
 
 	return (
 		<div>

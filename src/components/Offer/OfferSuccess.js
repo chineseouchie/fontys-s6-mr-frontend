@@ -5,6 +5,7 @@ export default function OfferSuccess() {
 	const location = useLocation();
 	const offer = location.state.offer;
 	const vehicle = location.state.vehicle;
+
 	return (
 		<Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }} pr={20} pl={20}>
 			<Typography variant="h3">Invoice requested</Typography>

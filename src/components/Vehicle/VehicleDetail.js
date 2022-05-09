@@ -13,6 +13,7 @@ export default function VehicleDetail() {
 	const openRequest = () => {
 		navigate(`/vehicles/${params.id}/request`)
 	}
+
 	return (
 		<>
 			Vehicle details
@@ -41,7 +42,6 @@ export default function VehicleDetail() {
 				</Box>
 			</div>
 			<Button variant="contained" onClick={openRequest}>Select this car</Button>
-
 		</>
 	)
 }

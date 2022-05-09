@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function VehicleCard({ vehicle }) {
 	const navigate = useNavigate();
+
 	return (
 		<Grid item xs={2} sm={4} md={4}>
 			<Card onClick={() => { navigate(`/vehicles/${vehicle.uuid}`, { state: { vehicle: vehicle } }) }}>

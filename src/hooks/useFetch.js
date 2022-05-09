@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 class FetchException {
 	constructor(message, code) {
 		this.message = message;
@@ -14,7 +13,6 @@ export const useFetch = (url, token) => {
 	const [data, setData] = useState([]);
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true);
-	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchData = async () => {
 			setLoading(true);
@@ -30,7 +28,6 @@ export const useFetch = (url, token) => {
 				};
 			}
 
-
 			try {
 				const res = await fetch(url, { headers: config });
 				if (res.status !== 200) {
@@ -41,24 +38,13 @@ export const useFetch = (url, token) => {
 				setData(json);
 				setLoading(false);
 			} catch (err) {
-				if (err.code === 404) {
-					return navigate(`/404`)
-				}
-
-				/*eslint indent: ["error","tab", {"SwitchCase": 1}]*/
-				switch (err.code) {
-					case 404:
-						navigate(`/404`)
-						break;
-					default:
-						navigate("/500")
-				}
 				setError(err);
 				setLoading(false);
 			}
 		};
 
 		fetchData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [url, token]);
 	return { data, error, loading };
 }

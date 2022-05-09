@@ -56,6 +56,7 @@ export default function VehicleRequest() {
 					delivery_date: deliveryDate
 				})
 			})
+
 			const result = await res.json()
 			if (res.status === 200) {
 				enqueueSnackbar(`${result.message}`, {
@@ -164,7 +165,6 @@ export default function VehicleRequest() {
 					</Grid>
 				</Grid>
 			</form>
-
 		</>
 	)
 }

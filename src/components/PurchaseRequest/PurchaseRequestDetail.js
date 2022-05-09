@@ -51,7 +51,6 @@ export default function PurchaseRequestDetail() {
 				variant: "error",
 				autoHideDuration: 2500,
 			});
-			navigate("/500")
 		}
 
 	}
