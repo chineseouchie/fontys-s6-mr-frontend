@@ -10,9 +10,6 @@ export default function Login() {
 	const { enqueueSnackbar } = useSnackbar();
 	const [disableLogin, setDisableLogin] = useState(false)
 
-	const [email, setEmail] = useState("")
-	const [password, setPassword] = useState("")
-
 	useEffect(() => {
 		if (user?.jwt) {
 			navigate("/")
@@ -32,7 +29,7 @@ export default function Login() {
 				headers: {
 					"content-type": "application/json"
 				},
-				body: JSON.stringify({ email, password, isEmployee: false })
+				body: JSON.stringify({ email, password, isEmployee: true })
 			})
 			const result = await res.json()
 
@@ -67,8 +64,8 @@ export default function Login() {
 			<form className="login-form" onSubmit={onLogin}>
 				<FormControl>
 					<FormGroup >
-						<TextField label="Email" type="email" name="email" variant="standard" required value={email} />
-						<TextField label="Password" type="password" name="password" variant="standard" required value={password} />
+						<TextField label="Email" type="email" name="email" variant="standard" required defaultValue="admin@example.com" />
+						<TextField label="Password" type="password" name="password" variant="standard" required defaultValue="adminPassword1!" />
 					</FormGroup>
 
 					<Button variant="contained" type="submit" disabled={disableLogin}>
@@ -77,11 +74,6 @@ export default function Login() {
 				</FormControl>
 
 			</form>
-
-			<div style={{ marginTop: "50px" }}>
-				<Button className="log-button" variant="contained" onClick={() => { setEmail("bmw@example.com"); setPassword("bmwPassword1!") }}>setCookie BMW (Log In)</Button>
-				<Button className="log-button" variant="contained" onClick={() => { setEmail("audi@example.com"); setPassword("audiPassword1!") }}>setCookie AUDI (Log In)</Button>
-			</div>
 		</>
 	)
 

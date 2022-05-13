@@ -173,18 +173,7 @@ export default function Sidebar({ children }) {
 					:
 					(
 						<>
-							<div>
-								<Button className="log-button" variant="contained" onClick={() => login("company_ABC")}>setCookie BMW (Log In)</Button>
-							</div>
-							<div>
-								<Button className="log-button" variant="contained" onClick={() => login("company_DEF")}>setCookie AUDI (Log In)</Button>
-							</div>
-							<div>
-								<Button className="log-button" variant="contained" onClick={() => login("company_GHI")}>setCookie OPEL (Log In)</Button>
-							</div>
-							<div>
-								<Button className="log-button" variant="contained" onClick={() => login("company_JKL")}>setCookie TESLA (Log In)</Button>
-							</div>
+
 						</>
 					)
 				}

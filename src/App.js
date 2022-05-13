@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Auth/Login";
+import EmployeeLogin from "./components/Auth/EmployeeLogin";
 import Sidebar from "./components/Menu/Sidebar";
 import Vehicles from "./components/Vehicle/Vehicles";
 import VehicleDetail from "./components/Vehicle/VehicleDetail";
@@ -38,6 +39,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={auth ? <Dashboard /> : <Login />} />
 						<Route path="/login" element={<Login />} />
+						<Route path="/login/employee" element={<EmployeeLogin />} />
 						<Route path="/vehicles" element={<Vehicles />} />
 						<Route path="/vehicles/detail/:id" element={<VehicleDetail />} />
 						<Route path="/offers" element={<OfferList />} />
