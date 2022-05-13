@@ -18,16 +18,23 @@ import Http404 from "./components/HttpError/Http404"
 import Http500 from "./components/HttpError/Http500"
 import PurchaseOrderDetail from "./components/PurchaseOrder/PurchaseOrderDetail";
 import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
+import jwt_decode from "jwt-decode";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
 	const { user } = useContext(UserContext)
 	const [auth, setAuth] = useState(false)
+	const [token, setToken] = useState({})
+
+	console.log(token)
 
 	useEffect(() => {
 		if (user.jwt) {
 			setAuth(true)
+			setToken(jwt_decode(user.jwt))
 		} else {
 			setAuth(false)
+			setToken({})
 		}
 
 	}, [user.jwt])
