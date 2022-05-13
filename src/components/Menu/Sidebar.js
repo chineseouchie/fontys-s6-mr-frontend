@@ -95,7 +95,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 export default function Sidebar({ children }) {
 	const theme = useTheme();
 	const [open, setOpen] = useState(true);
-	const { user, login, logout } = useContext(UserContext)
+	const { user, logout } = useContext(UserContext)
 
 	const handleDrawerOpen = () => {
 		setOpen(true);

@@ -1,18 +1,18 @@
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useSnackbar } from "notistack";
-import { useCookies } from "react-cookie";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import useLocalStorage from "../../hooks/useLocalStorage";
 import { unixToDate } from "../../utils/date";
 
 export default function PurchaseRequestDetail() {
 	const params = useParams();
 	const uuid = params.id
-	const [cookies] = useCookies(["mr_jwt"]);
+	const [jwt] = useLocalStorage("mr-jwt");
 	const navigate = useNavigate();
 	const { enqueueSnackbar } = useSnackbar();
-	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}`, cookies.mr_jwt)
+	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}`, jwt)
 
 	if (loading) {
 		return <>Loading</>
@@ -30,7 +30,7 @@ export default function PurchaseRequestDetail() {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": cookies.mr_jwt
+					"Authorization": jwt
 				}
 			})
 			if (res.status === 200) {
