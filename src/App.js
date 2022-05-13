@@ -19,7 +19,6 @@ import Http500 from "./components/HttpError/Http500"
 import PurchaseOrderDetail from "./components/PurchaseOrder/PurchaseOrderDetail";
 import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
 import jwt_decode from "jwt-decode";
-import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
 	const { user } = useContext(UserContext)

@@ -10,6 +10,9 @@ export default function Login() {
 	const { enqueueSnackbar } = useSnackbar();
 	const [disableLogin, setDisableLogin] = useState(false)
 
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+
 	useEffect(() => {
 		if (user?.jwt) {
 			navigate("/")
@@ -64,8 +67,8 @@ export default function Login() {
 			<form className="login-form" onSubmit={onLogin}>
 				<FormControl>
 					<FormGroup >
-						<TextField label="Email" type="email" name="email" variant="standard" required defaultValue="admin@example.com" />
-						<TextField label="Password" type="password" name="password" variant="standard" required defaultValue="adminPassword1!" />
+						<TextField label="Email" type="email" name="email" variant="standard" required value={email} />
+						<TextField label="Password" type="password" name="password" variant="standard" required value={password} />
 					</FormGroup>
 
 					<Button variant="contained" type="submit" disabled={disableLogin}>
@@ -73,6 +76,10 @@ export default function Login() {
 					</Button>
 				</FormControl>
 
+				<div style={{ marginTop: "50px" }}>
+					<Button className="log-button" variant="contained" onClick={() => { setEmail("admin@example.com"); setPassword("adminPassword1!"); }}>Admin</Button>
+					<Button className="log-button" variant="contained" onClick={() => { setEmail("employee@example.com"); setPassword("employeePassword1!"); }}>Employee</Button>
+				</div>
 			</form>
 		</>
 	)
