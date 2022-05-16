@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
@@ -38,6 +39,7 @@ export default function OfferList() {
 
 				getRowId={(item) => item.offerUuid}
 			/>
+
 		</div>
 	);
 }

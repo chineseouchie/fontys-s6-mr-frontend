@@ -1,10 +1,11 @@
+import { TextField } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useFetch } from "../../hooks/useFetch";
 const columns = [
 	{ field: "name", headerName: "company name", flex: 1 }
 ];
 
-export default function DealerList({ setSelectedIds }) {
+export default function DealerList({ setSelectedIds, setDeliveryPrice }) {
 	const { data, error, loading } = useFetch("http://localhost:8087/api/v1/purchase-request/dealers");
 
 	if (loading) {
@@ -36,6 +37,8 @@ export default function DealerList({ setSelectedIds }) {
 					setSelectedIds(ids)
 				}}
 			/>
+			<TextField id="standard-basic" label="Standard" variant="standard" onChange={(e) => setDeliveryPrice(e.target.value)} />
+
 		</div>
 	)
 }

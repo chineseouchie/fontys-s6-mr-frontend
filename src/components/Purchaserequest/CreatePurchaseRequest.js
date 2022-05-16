@@ -9,6 +9,7 @@ export default function CreatePurchaseRequest() {
 	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
 	const { data, error, loading } = useFetch(`http://localhost:8083/api/v1/offer/${params.id}`);
+	const [deliveryPrice, setDeliveryPrice] = useState(0)
 
 	if (loading) {
 		return "loading...";
@@ -19,8 +20,6 @@ export default function CreatePurchaseRequest() {
 		return "error."
 	}
 
-	console.log(data);
-
 	const submitSelection = async function () {
 		try {
 			const response = await fetch("http://localhost:8087/api/v1/purchase-request/create", {
@@ -29,13 +28,13 @@ export default function CreatePurchaseRequest() {
 				body: JSON.stringify({
 					offerUuid: params.id,
 					deliveryDate: data.delivery_date,
-					deliveryPrice: data.delivery_price,
+					deliveryPrice: deliveryPrice,
 					companyUuids: selectedCompanyIds
 				})
 			});
 
 			if (response.status === 200 || response.status === 201) {
-				const json = response.json();
+				const json = await response.json();
 				console.log(json);
 				enqueueSnackbar(`Purchase request created.`, {
 					variant: "success",
@@ -59,7 +58,7 @@ export default function CreatePurchaseRequest() {
 
 	return (
 		<div className="offer">
-			<DealerList setSelectedIds={setSelectedIds} />
+			<DealerList setSelectedIds={setSelectedIds} setDeliveryPrice={setDeliveryPrice} />
 			<button onClick={submitSelection}>Create purchase request!</button>
 		</div>
 	);
