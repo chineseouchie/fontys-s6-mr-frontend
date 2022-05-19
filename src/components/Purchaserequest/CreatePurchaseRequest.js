@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { useSnackbar } from "notistack"
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -9,7 +10,7 @@ export default function CreatePurchaseRequest() {
 	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
 	const { data, error, loading } = useFetch(`http://localhost:8083/api/v1/offer/${params.id}`);
-	const [deliveryPrice, setDeliveryPrice] = useState(0)
+	const [deliveryPrice, setDeliveryPrice] = useState()
 
 	if (loading) {
 		return "loading...";
@@ -58,8 +59,8 @@ export default function CreatePurchaseRequest() {
 
 	return (
 		<div className="offer">
-			<DealerList setSelectedIds={setSelectedIds} setDeliveryPrice={setDeliveryPrice} />
-			<button onClick={submitSelection}>Create purchase request!</button>
+			<DealerList setSelectedIds={setSelectedIds} deliveryPrice={deliveryPrice} setDeliveryPrice={setDeliveryPrice} />
+			<Button onClick={submitSelection}>Create purchase request</Button>
 		</div>
 	);
 }

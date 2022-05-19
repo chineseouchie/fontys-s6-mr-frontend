@@ -1,11 +1,11 @@
-import { TextField } from "@mui/material";
+import { FormControl, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useFetch } from "../../hooks/useFetch";
 const columns = [
 	{ field: "name", headerName: "company name", flex: 1 }
 ];
 
-export default function DealerList({ setSelectedIds, setDeliveryPrice }) {
+export default function DealerList({ setSelectedIds, deliveryPrice, setDeliveryPrice }) {
 	const { data, error, loading } = useFetch("http://localhost:8087/api/v1/purchase-request/dealers");
 
 	if (loading) {
@@ -32,13 +32,28 @@ export default function DealerList({ setSelectedIds, setDeliveryPrice }) {
 				autoHeight
 				getRowId={(dealers) => dealers.uuid}
 				checkboxSelection
-
 				onSelectionModelChange={(ids) => {
 					setSelectedIds(ids)
 				}}
 			/>
-			<TextField id="standard-basic" label="Standard" variant="standard" onChange={(e) => setDeliveryPrice(e.target.value)} />
 
+			<FormControl fullWidth sx={{ mt: 1 }}>
+				<InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+				<OutlinedInput
+					id="outlined-adornment-amount"
+					type="number"
+					defaultValue={deliveryPrice}
+					inputProps={{
+						maxLength: 20,
+						step: "1",
+						min: 0
+					}}
+					placeholder="15.00"
+					onChange={(e) => setDeliveryPrice(parseFloat(e.target.value).toFixed(2))}
+					startAdornment={<InputAdornment position="start">€</InputAdornment>}
+					label="Delivery price"
+				/>
+			</FormControl>
 		</div>
 	)
 }
