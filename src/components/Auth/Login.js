@@ -63,7 +63,7 @@ export default function Login() {
 
 	function test123() {
 		fetch(
-			"http://192.168.44.216:30007/api/v1/auth")
+			"http://192.168.48.17:30007/api/v1/auth")
 			.then((res) => res.json())
 			.then((json) => {
 				console.log(json);
