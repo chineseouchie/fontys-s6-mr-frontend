@@ -14,6 +14,7 @@ import OfferSuccess from "./components/Offer/OfferSuccess";
 import VehicleRequest from "./components/Vehicle/VehicleRequest";
 import PurchaseRequest from "./components/PurchaseRequest/PurchaseRequest"
 import PurchaseRequestDetail from "./components/PurchaseRequest/PurchaseRequestDetail"
+import PurchaseRequestAcceptedList from "./components/PurchaseRequest/PurchaseRequestAcceptedList"
 import Http404 from "./components/HttpError/Http404"
 import Http500 from "./components/HttpError/Http500"
 import PurchaseOrderDetail from "./components/PurchaseOrder/PurchaseOrderDetail";
@@ -56,6 +57,7 @@ function App() {
 						<Route path="/invoice/success" element={<OfferSuccess />} />
 						<Route path="/purchase-request" element={<PurchaseRequest />} />
 						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />
+						<Route path="/purchase-request/accepted" element={<PurchaseRequestAcceptedList />} />
 						<Route path="/404" element={<Http404 />} />
 						<Route path="/500" element={<Http500 />} />
 						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />

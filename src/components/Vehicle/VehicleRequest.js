@@ -106,7 +106,7 @@ export default function VehicleRequest() {
 								<TextField label="First name" type="text" name="first_name" variant="standard" required sx={{ flex: 1 }} value="as" />
 								<TextField label="Last name" type="text" name="last_name" variant="standard" required sx={{ flex: 1 }} value="ssdas" />
 							</div>
-							<TextField label="Email" type="email" name="email" variant="standard" required value="tes@asd" />
+							<TextField label="Email" type="email" name="email" variant="standard" required value="stan.jens@gmail.com" />
 							<TextField label="Phone number" type="text" name="phone_number" variant="standard" required value="065874521" />
 						</FormGroup>
 
