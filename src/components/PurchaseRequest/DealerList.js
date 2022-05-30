@@ -1,12 +1,15 @@
 import { FormControl, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useContext } from "react";
 import { useFetch } from "../../hooks/useFetch";
+import { UserContext } from "../../providers/UserProvider";
 const columns = [
 	{ field: "name", headerName: "company name", flex: 1 }
 ];
 
 export default function DealerList({ setSelectedIds, deliveryPrice, setDeliveryPrice }) {
-	const { data, error, loading } = useFetch("http://localhost:8087/api/v1/purchase-request/dealers");
+	const {user} = useContext(UserContext)
+	const { data, error, loading } = useFetch("http://localhost:8087/api/v1/purchase-request/dealers", user.jwt);
 
 	if (loading) {
 		return "loading...";

@@ -20,9 +20,17 @@ const columns = [
 
 export default function PurchaseRequest() {
 	const {user} = useContext(UserContext)
-	const { data } = useFetch("http://localhost:8087/api/v1/purchase-request", user.jwt);
-	console.log(data);
+	const { data, error, loading } = useFetch("http://localhost:8087/api/v1/purchase-request", user.jwt);
 	const navigate = useNavigate();
+	
+	if (loading) {
+		return <>loading</>
+	}
+	
+	if (error) {
+		console.log(error)
+		return <>error</>
+	}
 
 	function onPurchaseRequestClick(uuid) {
 		navigate(`/purchase-request-accepted/${uuid}`)
