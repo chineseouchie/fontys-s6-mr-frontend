@@ -1,18 +1,20 @@
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useSnackbar } from "notistack";
+import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import { UserContext } from "../../providers/UserProvider";
 import { unixToDate } from "../../utils/date";
 
 export default function PurchaseRequestDetail() {
 	const params = useParams();
 	const uuid = params.id
-	const [jwt] = useLocalStorage("mr-jwt");
+	const {user} = useContext(UserContext)
 	const navigate = useNavigate();
 	const { enqueueSnackbar } = useSnackbar();
-	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}`, jwt)
+	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}`, user.jwt)
 
 	if (loading) {
 		return <>Loading</>
@@ -30,7 +32,7 @@ export default function PurchaseRequestDetail() {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization": jwt
+					"Authorization": user.jwt
 				}
 			})
 			if (res.status === 200) {

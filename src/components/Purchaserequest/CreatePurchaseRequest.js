@@ -1,15 +1,17 @@
 import { Button } from "@mui/material";
 import { useSnackbar } from "notistack"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import { UserContext } from "../../providers/UserProvider";
 import DealerList from "./DealerList";
 
 export default function CreatePurchaseRequest() {
+	const {user} = useContext(UserContext)
 	const { enqueueSnackbar } = useSnackbar();
 	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
-	const { data, error, loading } = useFetch(`http://localhost:8083/api/v1/offer/${params.id}`);
+	const { data, error, loading } = useFetch(`http://localhost:8083/api/v1/offer/${params.id}`, user.jwt);
 	const [deliveryPrice, setDeliveryPrice] = useState()
 
 	if (loading) {
@@ -25,7 +27,10 @@ export default function CreatePurchaseRequest() {
 		try {
 			const response = await fetch("http://localhost:8087/api/v1/purchase-request/create", {
 				method: "POST",
-				headers: { "Content-Type": "application/json" },
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `${user.jwt}`,
+				},
 				body: JSON.stringify({
 					offerUuid: params.id,
 					deliveryDate: data.delivery_date,

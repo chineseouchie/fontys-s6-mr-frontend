@@ -3,17 +3,18 @@ import {Box} from "@mui/system";
 import {useSnackbar} from "notistack";
 import {useNavigate, useParams} from "react-router-dom";
 import {useFetch} from "../../hooks/useFetch";
-import useLocalStorage from "../../hooks/useLocalStorage";
 import {unixToDate} from "../../utils/date";
 import {DataGrid} from "@mui/x-data-grid";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserProvider";
 
 export default function PurchaseRequestDetail() {
 	const params = useParams();
 	const uuid = params.id
-	const [jwt] = useLocalStorage("mr-jwt");
+	const {user} = useContext(UserContext)
 	const navigate = useNavigate();
 	const {enqueueSnackbar} = useSnackbar();
-	const {data, error, loading} = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}/accepted`, jwt)
+	const {data, error, loading} = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}/accepted`, user.jwt)
 
 	if (loading) {
 		return <>Loading</>
@@ -27,7 +28,7 @@ export default function PurchaseRequestDetail() {
 		try {
 			const res = await fetch(`http://localhost:8087/api/v1/purchase-request/${uuid}/companies`, {
 				method: "POST", headers: {
-					"Content-Type": "application/json", "Authorization": jwt
+					"Content-Type": "application/json", "Authorization": user.jwt
 				}
 			})
 			if (res.status === 200) {
@@ -55,8 +56,8 @@ export default function PurchaseRequestDetail() {
 	return (<>
 		<div>
 			<Card className={"purchaseRequest_container"}>
-				<h1>Ons aanbod</h1>
-				<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+				<h1>nein</h1>
+				{/* <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 					<div style={{ height: 400, width: "100%" }}>
 						<DataGrid
 							getRowId={(row) => row.purchase_request_company_uuid}
@@ -64,10 +65,10 @@ export default function PurchaseRequestDetail() {
 							columns={columns}
 							pageSize={5}
 							rowsPerPageOptions={[5]}
-							onRowClick={(row) => { onPurchaseRequestClick(row.id) }}
+							onRowClick={(row) => { console.log(row.id) }}
 						/>
 					</div>
-				</Grid>
+				</Grid> */}
 			</Card>
 		</div>
 	</>)

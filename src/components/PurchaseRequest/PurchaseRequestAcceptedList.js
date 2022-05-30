@@ -1,9 +1,10 @@
 import "./purchase.css"
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
-import useLocalStorage from "../../hooks/useLocalStorage";
 import {Card, Grid} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserProvider";
 
 const columns = [
 	{
@@ -18,8 +19,8 @@ const columns = [
 ];
 
 export default function PurchaseRequest() {
-	const [jwt] = useLocalStorage("mr-jwt");
-	const { data } = useFetch("http://localhost:8087/api/v1/purchase-request", jwt);
+	const {user} = useContext(UserContext)
+	const { data } = useFetch("http://localhost:8087/api/v1/purchase-request", user.jwt);
 	console.log(data);
 	const navigate = useNavigate();
 
@@ -44,7 +45,7 @@ export default function PurchaseRequest() {
 	return (
 		<div>
 			<Card className={"purchaseRequest_container"}>
-				<h1>Ons aanbod</h1>
+				<h1>Request</h1>
 				<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
 					<div style={{ height: 400, width: "100%" }}>
 						<DataGrid

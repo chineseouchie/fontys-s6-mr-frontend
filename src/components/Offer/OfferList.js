@@ -1,7 +1,9 @@
 import { TextField } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import { UserContext } from "../../providers/UserProvider";
 
 const columns = [
 	{ field: "customer_name", headerName: "Customer name", flex: 2, valueGetter: (item) => `${item.row.customer.first_name} ${item.row.customer.last_name}` },
@@ -13,7 +15,8 @@ const columns = [
 
 export default function OfferList() {
 	const navigate = useNavigate();
-	const { data, error, loading } = useFetch("http://localhost:8083/api/v1/offer/")
+	const {user} = useContext(UserContext)
+	const { data, error, loading } = useFetch("http://localhost:8083/api/v1/offer/", user.jwt)
 
 	if (loading) {
 		return "loading"

@@ -4,6 +4,8 @@ import { useFetch } from "../../hooks/useFetch";
 import { Card, Grid } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserProvider";
 
 const columns = [
 	{ field: "brand_name", headerName: "Brand", width: 250 },
@@ -13,8 +15,8 @@ const columns = [
 ];
 
 export default function PurchaseRequest() {
-	const [jwt] = useLocalStorage("mr-jwt");
-	const { data } = useFetch("http://localhost:8087/api/v1/purchase-request/dealer/requests", jwt);
+	const {user} = useContext(UserContext)
+	const { data } = useFetch("http://localhost:8087/api/v1/purchase-request/dealer/requests", user.jwt);
 	console.log(data);
 	const navigate = useNavigate();
 
