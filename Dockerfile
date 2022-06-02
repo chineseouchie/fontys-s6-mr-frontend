@@ -4,9 +4,6 @@ COPY package*.json /app/
 RUN npm install
 COPY ./ /app/
 
-FROM build as test
-RUN npm test
-
 FROM build as prod
 RUN  npm run build
 

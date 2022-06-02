@@ -4,7 +4,7 @@ import { useFetch } from "../../hooks/useFetch";
 export default function PurchaseOrderDetail() {
 	const params = useParams();
 	const uuid = params.id
-	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-order/${uuid}`)
+	const { data, error, loading } = useFetch(`http://192.168.48.17:30010/api/v1/purchase-order/${uuid}`)
 
 	if (loading) {
 		return <>Loading</>

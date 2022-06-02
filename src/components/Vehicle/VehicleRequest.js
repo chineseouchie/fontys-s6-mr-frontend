@@ -11,7 +11,7 @@ import { useSnackbar } from "notistack";
 
 export default function VehicleRequest() {
 	const params = useParams();
-	const { data, error, loading } = useFetch(`http://localhost:8081/api/v1/vehicle/${params.id}`);
+	const { data, error, loading } = useFetch(`http://192.168.48.17:30008/api/v1/vehicle/${params.id}`);
 	const today = getDateToday()
 	const [date, setDate] = useState(new Date(`${today.yyyy}-${today.mm}-${today.dd}`));
 	const navigate = useNavigate();

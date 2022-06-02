@@ -16,7 +16,7 @@ const columns = [
 export default function OfferList() {
 	const navigate = useNavigate();
 	const {user} = useContext(UserContext)
-	const { data, error, loading } = useFetch("http://localhost:8083/api/v1/offer/", user.jwt)
+	const { data, error, loading } = useFetch("http://192.168.48.17:30009/api/v1/offer/", user.jwt)
 
 	if (loading) {
 		return "loading"
