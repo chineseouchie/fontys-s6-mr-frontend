@@ -4,9 +4,12 @@ import { useFetch } from "../../hooks/useFetch";
 import { Button, Card, Grid } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserProvider";
 
 export default function PurchaseOrder() {
-	const { data } = useFetch("http://localhost:8086/api/v1/purchase_order/company_ABC");
+	const { user } = useContext(UserContext)
+	const { data } = useFetch(`http://localhost:8086/api/v1/purchase_order/${user.jwt}`, user.jwt);
 	const columns = [
 		{
 			field: "image_url", headerName: "Preview", flex: 2,
