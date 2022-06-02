@@ -11,7 +11,7 @@ export default function CreatePurchaseRequest() {
 	const { enqueueSnackbar } = useSnackbar();
 	const params = useParams();
 	const [selectedCompanyIds, setSelectedIds] = useState([]);
-	const { data, error, loading } = useFetch(`http://localhost:8083/api/v1/offer/${params.id}`, user.jwt);
+	const { data, error, loading } = useFetch(`http://192.168.48.17:30009/api/v1/offer/${params.id}`, user.jwt);
 	const [deliveryPrice, setDeliveryPrice] = useState()
 
 	if (loading) {

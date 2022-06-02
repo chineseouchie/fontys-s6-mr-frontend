@@ -9,7 +9,7 @@ import { UserContext } from "../../providers/UserProvider";
 
 export default function PurchaseOrder() {
 	const { user } = useContext(UserContext)
-	const { data } = useFetch(`http://localhost:8086/api/v1/purchase_order/${user.jwt}`, user.jwt);
+	const { data } = useFetch(`http://192.168.48.17:30010/api/v1/purchase-order/${user.jwt}`, user.jwt);
 	const columns = [
 		{
 			field: "image_url", headerName: "Preview", flex: 2,
