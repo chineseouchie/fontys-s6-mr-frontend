@@ -37,7 +37,7 @@ build:
     - 'docker rmi ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
 
   only:
-    - production-netlab
+    - production
 
 deploy:
   stage: deploy
@@ -46,4 +46,4 @@ deploy:
     - 'docker run -d -p 80:80 ${CI_REGISTRY_IMAGE}:latest'
 
   only:
-    - production-netlab
+    - production
