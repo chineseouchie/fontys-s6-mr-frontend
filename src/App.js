@@ -20,6 +20,7 @@ import Http500 from "./components/HttpError/Http500"
 import PurchaseOrderDetail from "./components/PurchaseOrder/PurchaseOrderDetail";
 import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
 import jwt_decode from "jwt-decode";
+import PurchaseRequestDetailAccepted from "./components/PurchaseRequest/PurchaseRequestAccepted";
 
 function App() {
 	const { user } = useContext(UserContext)
@@ -63,6 +64,7 @@ function App() {
 						<Route path="/purchase-request/:id" element={<PurchaseRequestDetail />} />
 						<Route path="/purchase-order" element={<PurchaseOrder />} />
 						<Route path="/purchase-order/:id" element={<PurchaseOrderDetail />} />
+						<Route path="/purchase-request-accepted/:id" element={<PurchaseRequestDetailAccepted />} />
 					</Routes>
 				</Sidebar>
 			</Router>
