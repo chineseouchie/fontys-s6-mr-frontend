@@ -103,20 +103,20 @@ export default function VehicleRequest() {
 					<Grid item xs={7} pr={3}>
 						<FormGroup>
 							<div style={{ display: "flex" }}>
-								<TextField label="First name" type="text" name="first_name" variant="standard" required sx={{ flex: 1 }} value="as" />
-								<TextField label="Last name" type="text" name="last_name" variant="standard" required sx={{ flex: 1 }} value="ssdas" />
+								<TextField label="First name" type="text" name="first_name" variant="standard" required sx={{ flex: 1 }} defaultValue="as" />
+								<TextField label="Last name" type="text" name="last_name" variant="standard" required sx={{ flex: 1 }} defaultValue="ssdas" />
 							</div>
-							<TextField label="Email" type="email" name="email" variant="standard" required value="stan.jens@gmail.com" />
-							<TextField label="Phone number" type="text" name="phone_number" variant="standard" required value="065874521" />
+							<TextField label="Email" type="email" name="email" variant="standard" required defaultValue="stan.jens@gmail.com" />
+							<TextField label="Phone number" type="text" name="phone_number" variant="standard" required defaultValue="065874521" />
 						</FormGroup>
 
 						<FormGroup sx={{ mt: 3 }}>
-							<TextField label="Street name" type="text" name="street" variant="standard" required value="street" />
-							<TextField label="House nr" type="text" name="house_number" variant="standard" required value="23e" />
-							<TextField label="Zip code" type="text" name="zip_code" variant="standard" required value="5555sd" />
-							<TextField label="Province" type="text" name="province" variant="standard" required value="test" />
-							<TextField label="City" type="text" name="city" variant="standard" required value="sdsd" />
-							<TextField label="Country" type="text" name="country" variant="standard" required value="asasd" />
+							<TextField label="Street name" type="text" name="street" variant="standard" required defaultValue="street" />
+							<TextField label="House nr" type="text" name="house_number" variant="standard" required defaultValue="23e" />
+							<TextField label="Zip code" type="text" name="zip_code" variant="standard" required defaultValue="5555sd" />
+							<TextField label="Province" type="text" name="province" variant="standard" required defaultValue="test" />
+							<TextField label="City" type="text" name="city" variant="standard" required defaultValue="sdsd" />
+							<TextField label="Country" type="text" name="country" variant="standard" required defaultValue="asasd" />
 						</FormGroup>
 
 						<FormGroup sx={{ mt: 3 }}>
