@@ -9,14 +9,19 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LoginIcon from "@mui/icons-material/Login";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import CarCrashIcon from "@mui/icons-material/CarCrash";
 import CarRentalIcon from "@mui/icons-material/CarRental";
 import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserProvider";
 import MenuItem from "./MenuItem";
+import { Button } from "@mui/material";
+import "./Sidebar.css";
 
 
 const drawerWidth = 240;
@@ -90,7 +95,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 export default function Sidebar({ children }) {
 	const theme = useTheme();
 	const [open, setOpen] = useState(true);
-	const { user } = useContext(UserContext)
+	const { user, logout } = useContext(UserContext)
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -134,6 +139,10 @@ export default function Sidebar({ children }) {
 						(
 							<>
 								<MenuItem route="/" text="Dashboard" icon={<DashboardIcon />} open={open} />
+								<MenuItem route="offers" text="Offers (Medewerker)" icon={< AssignmentIcon />} open={open} />
+								<MenuItem route="purchase-request" text="Purchase Request (Dealer)" icon={< AddShoppingCartIcon />} open={open} />
+								<MenuItem route="purchase-request/accepted" text="Accepted PR (Medewerker)" icon={< AddShoppingCartIcon />} open={open} />
+								<MenuItem route="purchase-order" text="Purchase Order (Dealer)" icon={< CarCrashIcon />} open={open} />
 							</>
 						)
 						:
@@ -149,8 +158,25 @@ export default function Sidebar({ children }) {
 				<List>
 					<>
 						<MenuItem route="vehicles" text="Vehicles" icon={< CarRentalIcon />} open={open} />
+
 					</>
+
 				</List>
+				{user.jwt ?
+					(
+						<>
+							<div>
+								<Button className="log-button" variant="contained" onClick={() => logout()}>removeCookie (Log Out)</Button>
+							</div>
+						</>
+					)
+					:
+					(
+						<>
+
+						</>
+					)
+				}
 			</Drawer>
 
 			{/* CONTENT */}

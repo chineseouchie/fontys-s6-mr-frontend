@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserProvider"
 import { Button, FormControl, FormGroup, TextField } from "@mui/material";
 
-
-
 export default function Login() {
 	const { user, login } = useContext(UserContext)
 	const navigate = useNavigate()
@@ -29,12 +27,12 @@ export default function Login() {
 		const password = e.target.password.value;
 
 		try {
-			const res = await fetch("http://192.168.48.17:30007/api/v1/auth/login", {
+			const res = await fetch("http://localhost:8080/api/v1/auth/login", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json"
 				},
-				body: JSON.stringify({ email, password, isEmployee: false })
+				body: JSON.stringify({ email, password, isEmployee: true })
 			})
 			const result = await res.json()
 
@@ -64,15 +62,6 @@ export default function Login() {
 
 	}
 
-	function test123() {
-		fetch(
-			"http://192.168.48.17:30007/api/v1/auth")
-			.then((res) => res.json())
-			.then((json) => {
-				console.log(json);
-			})
-	}
-
 	return (
 		<>
 			<form className="login-form" onSubmit={onLogin}>
@@ -85,17 +74,13 @@ export default function Login() {
 					<Button variant="contained" type="submit" disabled={disableLogin}>
 						Login
 					</Button>
-					<Button variant="contained" onClick={test123}>
-						Test
-					</Button>
 				</FormControl>
 
+				<div style={{ marginTop: "50px" }}>
+					<Button className="log-button" variant="contained" onClick={() => { setEmail("admin@example.com"); setPassword("adminPassword1!"); }}>Admin</Button>
+					<Button className="log-button" variant="contained" onClick={() => { setEmail("employee@example.com"); setPassword("employeePassword1!"); }}>Employee</Button>
+				</div>
 			</form>
-
-			<div style={{ marginTop: "50px" }}>
-				<Button className="log-button" variant="contained" onClick={() => { setEmail("bmw@example.com"); setPassword("bmwPassword1!") }}>setCookie BMW (Log In)</Button>
-				<Button className="log-button" variant="contained" onClick={() => { setEmail("audi@example.com"); setPassword("audiPassword1!") }}>setCookie AUDI (Log In)</Button>
-			</div>
 		</>
 	)
 

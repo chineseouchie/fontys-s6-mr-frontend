@@ -1,29 +1,29 @@
 import { createContext, useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export const UserContext = createContext({ auth: false })
 
 export default function UserProvider({ children }) {
 	const [user, setUser] = useState({ jwt: null })
-	const [cookies, setCookie, removeCookie] = useCookies(["mr_jwt"]);
+	const [jwt, setJwt] = useLocalStorage("mr-jwt");
 	useEffect(() => {
-		if (cookies?.mr_jwt) {
+		if (jwt) {
 			setUser(() => ({
-				jwt: cookies?.mr_jwt
+				jwt: jwt
 			}))
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const login = (jwt) => {
-		setCookie("mr_jwt", jwt)
+		setJwt(jwt)
 		setUser(() => ({
 			jwt: jwt
 		}))
 	}
 
 	const logout = () => {
-		removeCookie("mr_jwt")
+		setJwt(null)
 		setUser(() => ({
 			jwt: null
 		}));
