@@ -5,7 +5,7 @@ cache:
     - node_modules/
 
 stages:
-  - test
+  #- test
   - build 
   - deploy
 
@@ -16,14 +16,15 @@ before_script:
   - 'docker container rm $(docker ps --filter ancestor=mobilityrentals6/s6-mr-frontend -aq) || echo true'
   - 'docker image prune -f'
 
-test:
-  stage: test
-  script:
-    - echo "Start building App"
-    - docker build --target test --tag test .
-    - docker rmi test
-  only: 
-    - master
+#test:
+#  stage: test
+#  script:
+#    - echo "Start building App"
+#    - docker build --target test --tag test .
+#    - docker rmi test
+#  only:
+#    - master
+#    - production
 
     
 build:
