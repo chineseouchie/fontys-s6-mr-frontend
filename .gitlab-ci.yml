@@ -24,7 +24,6 @@ test:
     - docker rmi test
   only: 
     - master
-    - production-netlab
 
     
 build:
