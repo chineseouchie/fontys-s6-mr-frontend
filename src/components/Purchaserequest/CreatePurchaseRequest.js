@@ -25,7 +25,7 @@ export default function CreatePurchaseRequest() {
 
 	const submitSelection = async function () {
 		try {
-			const response = await fetch("http://localhost:8087/api/v1/purchase-request/create", {
+			const response = await fetch("http://192.168.48/17:30011/api/v1/purchase-request/create", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

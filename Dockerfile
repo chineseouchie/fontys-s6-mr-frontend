@@ -5,7 +5,7 @@ RUN npm install
 COPY ./ /app/
 
 FROM build as prod
-RUN  npm run build
+RUN npm run build
 
 FROM nginx:1.18.0
 COPY --from=prod /app/build/ /usr/share/nginx/html
