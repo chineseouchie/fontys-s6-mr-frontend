@@ -31,7 +31,7 @@ build:
   stage: build
   script: 
     - 'echo ${CI_REGISTRY_IMAGE}:$CI_COMMIT_SHA'
-    - 'docker build --tag "${CI_REGISTRY_IMAGE}:latest" --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} .'
+    - 'docker build --no-cache --tag "${CI_REGISTRY_IMAGE}:latest" --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} .'
     - 'docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
     - 'docker push ${CI_REGISTRY_IMAGE}:latest'
     - 'docker rmi ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
