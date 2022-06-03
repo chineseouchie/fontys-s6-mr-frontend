@@ -16,7 +16,7 @@ export default function PurchaseRequestDetailAccepted() {
 	const { user } = useContext(UserContext)
 	const navigate = useNavigate();
 	const { enqueueSnackbar } = useSnackbar();
-	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}/companies`, user.jwt)
+	const { data, error, loading } = useFetch(`http://192.168.48.17:30011/api/v1/purchase-request/${uuid}/companies`, user.jwt)
 
 	if (loading) {
 		return <>Loading</>
@@ -29,7 +29,7 @@ export default function PurchaseRequestDetailAccepted() {
 	const assign = async (acceptedId) => {
 		console.log(acceptedId)
 		try {
-			const res = await fetch(`http://localhost:8087/api/v1/purchase-request/assign`, {
+			const res = await fetch(`http://192.168.48.17:30011/api/v1/purchase-request/assign`, {
 				method: "PUT", headers: {
 					"Content-Type": "application/json", "Authorization": user.jwt
 				},

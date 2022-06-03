@@ -20,7 +20,7 @@ const columns = [
 
 export default function PurchaseRequest() {
 	const {user} = useContext(UserContext)
-	const { data, error, loading } = useFetch("http://localhost:8087/api/v1/purchase-request", user.jwt);
+	const { data, error, loading } = useFetch("http://192.168.48.17:30011/api/v1/purchase-request", user.jwt);
 	const navigate = useNavigate();
 	
 	if (loading) {

@@ -14,7 +14,7 @@ export default function PurchaseRequestDetail() {
 	const {user} = useContext(UserContext)
 	const navigate = useNavigate();
 	const { enqueueSnackbar } = useSnackbar();
-	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}`, user.jwt)
+	const { data, error, loading } = useFetch(`http://192.168.48.17:30011/api/v1/purchase-request/${uuid}`, user.jwt)
 
 	if (loading) {
 		return <>Loading</>
@@ -28,7 +28,7 @@ export default function PurchaseRequestDetail() {
 		const type = accepted ? "accept" : "decline"
 
 		try {
-			const res = await fetch(`http://localhost:8087/api/v1/purchase-request/${uuid}/${type}`, {
+			const res = await fetch(`http://192.168.48.17:30011/api/v1/purchase-request/${uuid}/${type}`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
