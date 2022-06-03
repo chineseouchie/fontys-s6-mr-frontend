@@ -16,7 +16,7 @@ export default function PurchaseRequestDetailAccepted() {
 	const { user } = useContext(UserContext)
 	const navigate = useNavigate();
 	const { enqueueSnackbar } = useSnackbar();
-	const { data, error, loading } = useFetch(`http://192.168.48/17:30011/api/v1/purchase-request/${uuid}/companies`, user.jwt)
+	const { data, error, loading } = useFetch(`http://localhost:8087/api/v1/purchase-request/${uuid}/companies`, user.jwt)
 
 	if (loading) {
 		return <>Loading</>
